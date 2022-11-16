@@ -90,6 +90,23 @@ class ProductController extends Controller
  
         return view('client.error');
     }
+
+    public function search(Request $request) {
+
+        $name = $request->input('name');
+
+        $data = Product::where('name', 'like', '%'.$name.'%' )->get();
+
+        if($data->count() > 0) {
+
+            return $data;
+
+        } else {
+
+            return;
+        }
+
+    }
     
 
 }

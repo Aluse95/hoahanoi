@@ -54,9 +54,10 @@
                 <img class="img-fluid h-100" src="client/assets/image/logo.jpg" alt="">
               </a>
             </div>
-            <div class="header-main_search col-lg-6 d-flex align-items-center">
-              <input class="search_input pl-3" type="text" placeholder="Tìm kiếm sản phẩm...">
-              <div class="btn-search text-white border-0"><i class="fa-solid fa-magnifying-glass mt-3"></i></div>
+            <div class="header-main_search col-lg-6 d-flex align-items-center position-relative">
+              <input class="search_input pl-3" id="search_input" type="text" placeholder="Tìm kiếm sản phẩm...">
+              <div onclick="search_ajax()" class="btn-search text-white border-0"><i class="fa-solid fa-magnifying-glass mt-3"></i></div>
+              <div class="data-search"></div>
             </div>
             <div class="header-main_contact col-lg-3 pr-0">
               <img class="img-fluid float-right" src="client/assets/image/order.jpg" alt="">
@@ -197,6 +198,41 @@
 @yield('js')
 
 <script type="text/javascript">
+
+
+
+  function search_ajax(){
+
+    $.ajax({
+        url : "search",
+        type : "get",
+        data : {
+          name : $('#search_input').val(),
+        },
+        success : function (data){
+          if(data) {
+            $.each(data, function(index, value) {
+              $('.data-search').append('<a href="'+ value['product_alias'] +'" class="item-search p-3"><div class="d-flex align-items-center"><div class="img-search"><img class="img-fluid w-100 h-100" src="'+ value['image'] +
+              '" alt=""></div><div class="data-name ml-4">'+ value['name'] +'</div></div><div class="data-price">'+ value['price'].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") +' đ</div></a>')
+            })
+          } else {
+            $('.data-search').append('<p class="py-3 m-0 ml-4">Không tìm thấy sản phẩm!</p>')
+          }
+          // $('#search_input').focus(function() {
+          //   $('.data-search').html('')
+          // })
+          $(document).click(function (e)
+          {
+            var container = $('.data-search'); //Đối tượng cần ẩn
+            
+            if (!container.is(e.target) && container.has(e.target).length === 0) // Nếu click bên ngoài đối tượng container thì ẩn nó đi
+            {
+              $('.data-search').html('')
+            }
+          });
+        }
+    });
+  }
 
   const menu = document.querySelector('.icon-menu');
   const mobile = document.querySelector('.nav-mobile');
