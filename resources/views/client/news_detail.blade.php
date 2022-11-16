@@ -146,11 +146,23 @@
                     news_id : {{ $news->id}}
                 },
                 success : function (data){
-                    $('#new-comment').append('<div class="comment" id="comment_'+ data['id']+'"><h3 class="mb-3">'+ data['name']+'</h3><div class="comment-detail">'+data['content']+
-                    '</div><div class="comment-action d-flex mt-2 ml-3"><p onclick="like('+ data['id']+')" class="comment-like mr-3 mb-2" id="comment-like_'+ data['id']+
-                    '">Thích</p><p onclick="reply('+ data['id']+')" class="comment-rep mb-2" >Trả lời</p></div>@if(session()->has("name"))<div class="rep-content mb-3" id="rep-content_'+data['id']+
-                    '"><h3 class="mb-3 ml-5">{{ session("name") }}</h3><input class="input-rep w-75 py-3 px-4 ml-5" type="text" name="input-rep" id="input-rep_' + data['id'] +
-                    '"><button class="btn btn-rep p-0 ml-2"  onclick="reply_ajax(' + data['id'] +')">Gửi</button></div>@endif<div id="new-reply_' + data['id'] +'"></div></div>');
+                    $('#new-comment').append(
+                    `<div class="comment" id="comment_${data['id']}">
+                        <h3 class="mb-3">${data['name']}</h3>
+                        <div class="comment-detail">${data['content']}</div>
+                        <div class="comment-action d-flex mt-2 ml-3">
+                            <p onclick="like(${data['id']})" class="comment-like mr-3 mb-2" id="comment-like_${data['id']}">Thích</p>
+                            <p onclick="reply(${data['id']})" class="comment-rep mb-2" >Trả lời</p>
+                            </div>
+                            @if(session()->has("name"))
+                                <div class="rep-content mb-3" id="rep-content_${data['id']}">
+                                    <h3 class="mb-3 ml-5">{{ session("name") }}</h3>
+                                    <input class="input-rep w-75 py-3 px-4 ml-5" type="text" name="input-rep" id="input-rep_${data['id']}">
+                                    <button class="btn btn-rep p-0 ml-2"  onclick="reply_ajax(' + data['id'] +')">Gửi</button>
+                                </div>
+                            @endif<div id="new-reply_${data['id']}">
+                        </div>
+                    </div>`)
 
                     $('#comment-content').val('')
                 }
@@ -169,12 +181,23 @@
                 },
                 success : function (data){
                     
-                    $('#new-reply_'+ id).append('<div class="mb-3 ml-5"><h3 class="mb-3">'+ data['name'] +'</h3><div class="comment-detail">'+ data['content'] +
-                    '</div></div><div class="comment-action d-flex mt-2 ml-5"><p onclick="rep_like('+ data['id'] +')" class="comment-like mr-3 mb-2" id="rep-like_'+ data['id'] +
-                    '">Thích</p><p onclick="rep_rep('+ data['id'] +')" class="comment-rep mb-2" >Trả lời</p></div>@if(session()->has("name"))<div class="rep-rep mb-3" id="rep-rep_'+data['id']+
-                    '"><h3 class="mb-3 ml-5">{{ session("name") }}</h3><input class="input-rep w-75 py-3 px-4 ml-5" type="text" name="input-rep" id="input-rep_' + data['id'] +
-                    '"><button class="btn btn-rep p-0 ml-2"  onclick="reply_ajax(' + data['id'] +')">Gửi</button></div><div id="new-reply_' + data['id'] +'"></div>@endif');
-    
+                    $('#new-reply_'+ id).append(
+                    `<div class="mb-3 ml-5">
+                        <h3 class="mb-3">${data['name']}</h3>
+                        <div class="comment-detail">${data['content']}</div>
+                    </div>
+                    <div class="comment-action d-flex mt-2 ml-5">
+                        <p onclick="rep_like(${data['id']})" class="comment-like mr-3 mb-2" id="rep-like_${data['id']}">Thích</p>
+                        <p onclick="rep_rep(${data['id']})" class="comment-rep mb-2" >Trả lời</p>
+                    </div>
+                    @if(session()->has("name"))
+                        <div class="rep-rep mb-3" id="rep-rep_${data['id']}">
+                            <h3 class="mb-3 ml-5">{{ session("name") }}</h3>
+                            <input class="input-rep w-75 py-3 px-4 ml-5" type="text" name="input-rep" id="input-rep_${data['id']}">
+                            <button class="btn btn-rep p-0 ml-2"  onclick="reply_ajax(${data['id']})">Gửi</button>
+                        </div>
+                        <div id="new-reply_${data['id']}"></div>
+                    @endif`)
                     $('#rep-content_'+ id).hide()
                     $('#rep-rep_'+ id).hide()
                     $('#input-rep_'+ id).val('')

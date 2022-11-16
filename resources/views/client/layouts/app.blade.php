@@ -33,10 +33,10 @@
                 <li><a href="news" class="text-white header-top_item px-3">Tin tức</a></li>
                 <li><a href="cart" class="text-white header-top_item px-3">Giỏ hàng</a></li>
                 <div class="social-icon">
-                  <a href=""><i class="social-icon_head text-white ml-2 fa-brands fa-facebook-f"></i></a>
-                  <a href=""><i class="social-icon_head text-white ml-2 fa-brands fa-instagram insta"></i></a>
-                  <a href=""><i class="social-icon_head text-white ml-2 fa-brands fa-twitter"></i></a>
-                  <a href=""><i class="social-icon_head text-white ml-2 fa-solid fa-envelope"></i></a>
+                  <a href="https://www.facebook.com/hanoiflorist.238"><i class="social-icon_head text-white ml-2 fa-brands fa-facebook-f"></i></a>
+                  <a href="https://www.instagram.com/ciel.flower.shop"><i class="social-icon_head text-white ml-2 fa-brands fa-instagram insta"></i></a>
+                  <a href="https://twitter.com/HoaYeuThuongVN"><i class="social-icon_head text-white ml-2 fa-brands fa-twitter"></i></a>
+                  <a href="mailto:huyenduong.dh111@gmail.com"><i class="social-icon_head text-white ml-2 fa-solid fa-envelope"></i></a>
                 </div>
               </ul>
             </div>
@@ -139,16 +139,16 @@
                 <p class="footer-text">Tự hào là một trong những Shop hoa tươi cung cấp các dịch vụ hoa tươi chuyên nghiệp và uy tín nhất, chúng tôi mong muốn nhận được nhiều hơn nữa sự tin tưởng và ủng hộ của khách hàng.</p>
                 <ul class="list-unstyled d-flex p-0 mb-4 ">
                   <li class="social-item mr-2 social-facebook">
-                    <a href="" class="footer-social_icon d-flex"><i class="m-auto text-white fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.facebook.com/hanoiflorist.238" class="footer-social_icon d-flex"><i class="m-auto text-white fa-brands fa-facebook-f"></i></a>
                   </li>
                   <li class="social-item mr-2 social-email">
-                    <a href="" class="footer-social_icon d-flex"><i class="m-auto text-white ml-2 fa-solid fa-envelope"></i></a>
+                    <a href="mailto:huyenduong.dh111@gmail.com" class="footer-social_icon d-flex"><i class="m-auto text-white ml-2 fa-solid fa-envelope"></i></a>
                   </li>
                   <li class="social-item mr-2 social-call">
-                    <a href="" class="footer-social_icon d-flex"><i class="m-auto text-white fa-sharp fa-solid fa-phone"></i></a>
+                    <a href="tel:+84886291555" class="footer-social_icon d-flex"><i class="m-auto text-white fa-sharp fa-solid fa-phone"></i></a>
                   </li>
                   <li class="social-item mr-2 social-youtube">
-                    <a href="" class="footer-social_icon d-flex"><i class="m-auto text-white fa-brands fa-youtube"></i></a>
+                    <a href="https://www.youtube.com/watch?v=HKwru9159Fg" class="footer-social_icon d-flex"><i class="m-auto text-white fa-brands fa-youtube"></i></a>
                   </li>
                 </ul>
                 <p class="footer-text mb-2">Mọi ý kiến đóng góp xin gửi về hòm thư:</p>
@@ -199,10 +199,7 @@
 
 <script type="text/javascript">
 
-
-
   function search_ajax(){
-
     $.ajax({
         url : "search",
         type : "get",
@@ -212,8 +209,16 @@
         success : function (data){
           if(data) {
             $.each(data, function(index, value) {
-              $('.data-search').append('<a href="'+ value['product_alias'] +'" class="item-search p-3"><div class="d-flex align-items-center"><div class="img-search"><img class="img-fluid w-100 h-100" src="'+ value['image'] +
-              '" alt=""></div><div class="data-name ml-4">'+ value['name'] +'</div></div><div class="data-price">'+ value['price'].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") +' đ</div></a>')
+              $('.data-search').append(
+              `<a href="${value['product_alias']}" class="item-search p-3">
+                <div class="d-flex align-items-center">
+                  <div class="img-search">
+                    <img class="img-fluid w-100 h-100" src="${value['image']}" alt="">
+                  </div>
+                  <div class="data-name ml-4">${value['name']}</div>
+                </div>
+                <div class="data-price">${value['price'].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} đ</div>
+              </a>`)
             })
           } else {
             $('.data-search').append('<p class="py-3 m-0 ml-4">Không tìm thấy sản phẩm!</p>')
@@ -234,39 +239,23 @@
     });
   }
 
-  const menu = document.querySelector('.icon-menu');
-  const mobile = document.querySelector('.nav-mobile');
-  const overlay = document.querySelector('.nav-overlay');
-  const close = document.querySelector('.nav-mobile_close')
-
-  if(menu) {
-    menu.onclick = function() {
-      mobile.style.transform = 'translateX(0)';
-      overlay.style.display = 'block';
-    }
-  }
-  if(overlay) {
-    overlay.onclick = function() {
-      overlay.style.display = 'none';
-      mobile.style.transform = 'translateX(-100%)'
-      menu_cart.style.transform = 'translateX(100%)';
-    }
-  }
-  if(close) {
-    close.onclick = function() {
-      overlay.style.display = 'none';
-      mobile.style.transform = 'translateX(-100%)';
-      // menu_cart.style.transform = 'translateX(100%)';
-    }
-  }
+  $('.icon-menu').click(function() {
+    $('.nav-mobile').css("transform","translateX(0)")
+    $('.nav-overlay').show()
+  })
+  $('.nav-overlay').click(function() {
+    $('.nav-overlay').hide()
+    $('.nav-mobile').css("transform","translateX(-100%)")
+  })
+  $('.nav-mobile_close').click(function() {
+    $('.nav-overlay').hide()
+    $('.nav-mobile').css("transform","translateX(-100%)")
+  })
 
   const icons = document.querySelectorAll('.show-data');
   const contents = document.querySelectorAll('.item-detail');
-
   icons.forEach((icon, index) => {
-
     const content = contents[index];
-
     icon.onclick = function() {
       icon.classList.toggle('rotate')
       content.classList.toggle('show')

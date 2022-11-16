@@ -51,7 +51,8 @@
                 <div class="btn float-right btn-total">Tổng tiền</div>
             </form>
             <div class="text-right mb-5">
-                <div class="total-price px-4 py-2">{{ number_format($total) }}<span class="vnd ml-2">đ</span></div>
+                <a href="payment" class="btn-order btn btn-info mr-3 mb-2 pt-2">Thanh toán tại đây</a>
+                <div class="total-price px-4 mr-5">{{ number_format($total) }}<span class="vnd ml-2">đ</span></div>
             </div>
         @else
             <div class="w-25 mx-auto">

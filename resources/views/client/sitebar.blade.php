@@ -8,7 +8,7 @@
             <i class="fa-solid fa-angles-right px-2"></i>
             <div class="wrap-item d-flex align-items-center justify-content-between">
               <a href="{{ $cat->cat_alias }}" class="data-link">{{ $cat->name }}</a>
-              <i class="show-data fa-solid fa-angle-down mr-3"></i>
+              <i class="show-data fa-sharp fa-solid fa-chevron-down"></i>
             </div>
           </div>
           <div class="item-detail ml-4 mr-4 mb-3">

@@ -122,4 +122,21 @@ class OrderController extends Controller {
 		return redirect('cart');
 	}
 
+	public function detail() {
+
+		if(session()->has('customer')) {
+
+			$total = 0;
+			$user = Users::where('email', session('customer'))->first();
+			$data = $user->product;
+	
+			return view('client.payment')
+			->with('data', $data)
+			->with('total', $total);
+		} else {
+
+			return redirect('login');
+		}
+	}
+
 }
