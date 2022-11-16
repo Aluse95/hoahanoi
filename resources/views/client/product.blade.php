@@ -50,19 +50,19 @@
                             <p class="desc-text">Từ khóa: <span class="pink-color">hoa chúc mừng sinh nhật người yêu</span></p>
                             <ul class="list-unstyled d-flex p-0 mb-5 social-icon_detail">
                                 <li class="social-item mr-2 social-item_facebook">
-                                <a href="" class="social-icon_link d-flex"><i class="m-auto fa-brands fa-facebook-f"></i></a>
+                                <a href="https://www.facebook.com/hanoiflorist.238" class="social-icon_link d-flex"><i class="m-auto fa-brands fa-facebook-f"></i></a>
                                 </li>
                                 <li class="social-item mr-2 social-item_twitter">
-                                <a href="" class="social-icon_link d-flex"><i class="m-auto ml-2 fa-brands fa-twitter"></i></a>
+                                <a href="https://twitter.com/HoaYeuThuongVN" class="social-icon_link d-flex"><i class="m-auto ml-2 fa-brands fa-twitter"></i></a>
                                 </li>
                                 <li class="social-item mr-2 social-item_email">
-                                <a href="" class="social-icon_link d-flex"><i class="m-auto ml-2 fa-solid fa-envelope"></i></a>
+                                <a href="mailto:huyenduong.dh111@gmail.com" class="social-icon_link d-flex"><i class="m-auto ml-2 fa-solid fa-envelope"></i></a>
                                 </li>
                                 <li class="social-item mr-2 social-item_pints">
-                                <a href="" class="social-icon_link d-flex"><i class="m-auto ml-2 fa-brands fa-pinterest"></i></i></a>
+                                <a href="mailto:huyenduong.dh111@gmail.com" class="social-icon_link d-flex"><i class="m-auto ml-2 fa-brands fa-pinterest"></i></i></a>
                                 </li>
                                 <li class="social-item mr-2 social-item_facebook">
-                                <a href="" class="social-icon_link d-flex"><i class="m-auto ml-2 fa-brands fa-linkedin"></i></a>
+                                <a href="mailto:huyenduong.dh111@gmail.com" class="social-icon_link d-flex"><i class="m-auto ml-2 fa-brands fa-linkedin"></i></a>
                                 </li>
                             </ul>
                         </div>                       

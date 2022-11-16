@@ -14,6 +14,8 @@ Route::post('cart/add',[OrderController::class, 'add']);
 Route::post('cart/update',[OrderController::class, 'update']);
 Route::get('cart/del/{id}',[OrderController::class, 'delete']);
 
+Route::get('payment',[OrderController::class, 'detail']);
+
 Route::get('news', [ProductController::class, 'news']);
 Route::get('intro', [NewsController::class, 'intro']);
 Route::get('contact', [NewsController::class, 'contact']);
