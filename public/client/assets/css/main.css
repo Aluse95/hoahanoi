@@ -822,3 +822,47 @@ html {
     margin-bottom: 4.5px;
     background-color: #ddd;
 }
+/**********SEARCH**********/
+.data-search {
+    top: 42px;
+    width: 87%;
+    z-index: 1000;
+    max-height: 70vh;
+    overflow-y: auto;
+    font-size: 1.4rem;
+    position: absolute;
+    background-color: #f1f1f1;
+}
+.img-search {
+    min-width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 100%;
+}
+.item-search {
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+}
+.item-search:hover {
+    color: #e85495;
+    text-decoration: none;
+    background-color: #fbfbfb;
+}
+.data-name {
+    height: 2.2rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+.data-price {
+    min-width: 75px;
+    height: 2.2rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}

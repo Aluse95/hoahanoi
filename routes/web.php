@@ -25,6 +25,8 @@ Route::post('register', [UserController::class, 'postRegister'] );
 
 Route::post('comment/add', [CommentController::class, 'add']);
 Route::post('comment/reply', [CommentController::class, 'reply']);
+
+Route::get('search', [ProductController::class, 'search']);
 // Route::get('news/{news_alias?}', [NewsController::class, 'detail']);
 
 Route::get('{cat_alias?}', [ProductController::class, 'category']);

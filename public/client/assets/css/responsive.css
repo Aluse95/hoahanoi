@@ -43,11 +43,16 @@
     .product-name {
         display: none;
     }
+    .form-login {
+        width: 90%;
+    }
 }
 
 /* Tablet: width >= 740px & width < 1024px */
 @media screen and (min-width: 740px) and (max-width: 1023px) {
-
+    .form-login {
+        width: 70%;
+    }
 }
 
 /* Mobile & Tablet: width <1024px */
