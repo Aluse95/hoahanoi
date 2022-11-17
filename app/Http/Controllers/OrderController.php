@@ -2,6 +2,8 @@
 
 use App\Models\Users;
 use App\Models\Order;
+use App\Models\Discount;
+use App\Models\OrderList;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -139,4 +141,57 @@ class OrderController extends Controller {
 		}
 	}
 
+	public function order(Request $request) {
+
+		$validated = $request->validate([
+			'name' => 'required',
+			'address' => 'required',
+			'phone' => 'required',
+			'price' => 'required'
+		]);
+
+		$params = $request->all();
+		$item = [];
+
+		foreach($params['product'] as $key =>$val) {
+
+			$item[] = $key.' x '.$val;
+		}
+		$pro = implode(';', $item);
+
+		$data = new OrderList;
+		$data->product = $pro;
+		$data->name = $request->input('firstname').$request->input('name');
+		$data->note = $request->input('note');
+		$data->phone = $request->input('phone');
+		$data->price = $request->input('price');
+		$data->address = $request->input('address');
+		$data->save();
+
+		return redirect('bo-hoa-dep')->with('message', 'Tạo đơn hàng thành công, đơn hàng sẽ được vận chuyển sớm');
+	}
+
+	public function discount(Request $request) {
+
+		$validated = $request->validate([
+			'content' => 'required'
+		]);
+
+		$item = $request->input('content');
+
+		$name = strtoupper($item);
+
+		$voucher = Discount::where('name', $name)->first();
+
+		if($voucher) {
+
+			$data = 1 - $voucher->sale_off;
+
+			return $data;
+
+		} else {
+			
+			return 1;
+		}
+	}
 }

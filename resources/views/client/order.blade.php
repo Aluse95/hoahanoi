@@ -12,7 +12,7 @@
                     {{ session('message') }}
                 </div>
             @endif
-            <h2 class="text-center mb-5 mt-3">DANH SÁCH ĐƠN HÀNG</h2>
+            <h2 class="text-center mb-5 mt-3">THÔNG TIN GIỎ HÀNG</h2>
             <form action="cart/update" method="POST">
                 @csrf
                 <table class="table table-bordered text-center table-order">

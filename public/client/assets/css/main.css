@@ -164,11 +164,12 @@ html {
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
 }
 .card-title {
+    height: 4.4rem;
+    font-weight: 500;
+    margin-bottom: 0;
     color: #636363;
     font-size: 1.6rem;
-    line-height: 2rem;
-    font-weight: 500;
-    height: 4rem;
+    line-height: 2.2rem;
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -274,9 +275,9 @@ html {
     opacity: 0.85;
 }
 .text-news {
-    font-size: 1.4rem;
-    line-height: 1.8rem;
-    height: 3.6rem;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    height: 4rem;
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -295,7 +296,7 @@ html {
 }
 .service-detail {
     color: #333;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     line-height: 2.4rem;
 }
 .inbox-fanpage {
@@ -321,7 +322,7 @@ html {
     color: #424242;
 }
 .footer-text {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     line-height: 2.4rem;
     margin-bottom: 20px;
     color: #424242;
@@ -363,7 +364,7 @@ html {
 
 }
 .footer-item {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     line-height: 2.2rem;
     margin-bottom: 10px;
     color: #424242;
@@ -493,7 +494,7 @@ html {
 }
 .data-link {
     color: #333;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
 }
 .data-item i {
     font-size: 1rem;
@@ -884,13 +885,14 @@ html {
     border: 2px solid #e85495;
 }
 .pay-btn {
+    border: none;
     color: #fff;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
+    line-height: 36px;
     background-color: #e85495;
 }
 .pay-btn:hover {
     color: #fff;
-    background-color: #ed2a7f;
 }
 .pay-title {
     font-size: 1.4rem;
@@ -905,4 +907,8 @@ html {
 .pay-current,
 .pay-discount {
     border-bottom: 1px solid #ddd;
+}
+#check-discount {
+    font-size: 2.4rem;
+    color: #539414;
 }

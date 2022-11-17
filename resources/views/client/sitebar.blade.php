@@ -1,6 +1,6 @@
 <div class="container-data_list">
     <h3 class="heading-detail m-0 pb-4">Danh mục sản phẩm</h3>
-    <ul class="data-list list-unstyled p-0 m-0">
+    <ul class="data-list list-unstyled px-3 m-0">
       @foreach ($all_cat as $cat)
           
         <li class="data-item">
