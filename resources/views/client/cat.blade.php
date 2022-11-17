@@ -5,6 +5,11 @@
 @endsection
 
 @section('container')
+    @if (session('message'))
+    <div class="alert-order alert alert-success text-center m-0 py-3">
+        {{ session('message') }}
+    </div>
+    @endif
     <div class="container">
         <div class="row mb-3">
             <div class="col-lg-3 col-12">

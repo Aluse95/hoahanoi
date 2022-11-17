@@ -29,7 +29,7 @@
 
             <div class="col-lg-3 container-data_list">
                 <h3 class="heading-detail m-0 py-4">Bài viết liên quan</h3>              
-                <ul class="data-list data-list_detail list-unstyled p-0 m-0">
+                <ul class="data-list data-list_detail list-unstyled px-2 m-0">
                     @foreach ($news as $item)
                         <li class="data-item d-flex align-items-center p-3">
                             <div class="wrap-data_img mr-3">
@@ -40,7 +40,7 @@
                     @endforeach
                 </ul>
                 <h3 class="heading-detail m-0 py-4">Sản phẩm mới</h3>              
-                <ul class="data-list data-list_detail list-unstyled p-0 m-0">
+                <ul class="data-list data-list_detail list-unstyled px-2 m-0">
                     @foreach ($new_product as $item)
                         <li class="data-item d-flex align-items-center p-3">
                             <div class="wrap-data_img mr-3">

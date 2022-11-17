@@ -15,6 +15,8 @@ Route::post('cart/update',[OrderController::class, 'update']);
 Route::get('cart/del/{id}',[OrderController::class, 'delete']);
 
 Route::get('payment',[OrderController::class, 'detail']);
+Route::post('payment',[OrderController::class, 'order']);
+Route::get('discount',[OrderController::class, 'discount']);
 
 Route::get('news', [ProductController::class, 'news']);
 Route::get('intro', [NewsController::class, 'intro']);
@@ -35,7 +37,7 @@ Route::get('{cat_alias?}', [ProductController::class, 'category']);
 
 // Route::get('san-pham/{product_alias?}', [ProductController::class, 'detail']);
 
-
+// Trang dành cho Admin
 
 
 
