@@ -40,7 +40,7 @@
               </a>
               <div class="card-body text-center">
                 <a href="{{ $item->product_alias }}" class="card-title">{{ $item->name }}</a>
-                <p class="card-text text-center mt-3"><span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span></span>{{number_format($item->price)}}<span class="vnd">đ</span></p>
+                <p class="card-text text-center"><span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span></span>{{number_format($item->price)}}<span class="vnd">đ</span></p>
               </div>
             </div>
           </div>

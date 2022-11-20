@@ -1,0 +1,103 @@
+* {
+    box-sizing: inherit;
+}
+html {
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    box-sizing: border-box;
+}
+.red {
+    color: red;
+}
+.header {
+    color: #fff;
+    font-size: 1.4rem;
+    background-color: #3a4651;
+}
+.user-img {
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    border-radius: 100%;
+}
+.user-logout {
+    height: 4rem;
+    color: #fff;
+    min-width: 4rem;
+    line-height: 4rem;
+    font-size: 1.6rem;
+    text-align: center;
+    background-color: #b3bfcb;
+}
+.dashboard {
+    height: 100vh;
+    background-color: #001c40;
+}
+.dashboard-link {
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.5rem;
+    padding: 12px 10px;
+}
+.dashboard-link:hover {
+    color: #fff;
+    text-decoration: none;
+}
+.dashboard-item {
+    border-radius: 5px;
+}
+.dashboard-item:hover {
+    background-color: #c6defd;
+}
+.dashboard-item:hover .dashboard-link {
+    color: #161648;
+}
+/***********Layouts***********/
+.heading {
+    margin-top: 90px;
+}
+.home-item {
+    color: #333;
+    font-size: 1.8rem;
+    margin: 50px 70px 0;
+}
+.home-item:hover {
+    transform: scale(1.1);
+    transition: transform linear 0.2s;
+    text-decoration: none;
+}
+.wrap-img {
+    width: 80px;
+    height: 80px;
+}
+.wrap-content {
+    font-size: 1.4rem;
+    background-color: #f4f4f4;
+}
+/***********Product***********/
+.content-add {
+    margin: 0 150px;
+}
+.btn-control {
+    font-size: 1.4rem;
+    min-width: 60px;
+}
+.content {
+    background-color: #fff;
+}
+thead {
+    background-color: #f3f3f3;
+}
+.content-detail {
+    max-height: 65px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+.input-item {
+    height: 36px;
+    font-size: 1.4rem;
+}
+
+
