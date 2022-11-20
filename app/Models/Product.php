@@ -13,7 +13,7 @@ class Product extends Model
 
     protected $table = 'product';
 
-    protected $fillable = ['name', 'product_alias', 'cat_id', 'admin_id', 'price', 'old_price', 'content', 'image', 'status_product'];
+    protected $fillable = ['name', 'product_alias', 'cat_id', 'admin_id', 'price', 'old_price', 'content', 'image','description', 'status'];
 
     public $timestamps = true;
 
