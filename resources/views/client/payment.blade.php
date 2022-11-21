@@ -67,7 +67,7 @@
                             <p>Tổng thanh toán</p>
                             <p id="current" class="d-none">{{$total}}</p>
                             <p class="pink-color" id="sale-price">{{ number_format($total) }} đ</p>
-                            <input type="hidden" id="total" name="price" value="">
+                            <input type="hidden" id="total" name="price" value="{{ number_format($total) }} đ">
                         </div>
                         <div class="pay-bank">
                             <input type="radio" id="bank" checked name="payment" value="bank">

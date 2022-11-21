@@ -14,7 +14,7 @@
           {{ session('message') }}
         </div>
       @endif
-      <h2>Sửa danh mục</h2>
+      <h2 class="text-center">Sửa danh mục</h2>
       <div class="form-group w-50 mb-3 mt-3">
         <label for="">Tên danh mục</label>
         <input type="text" name="name" value="{{ $item->name }}" class="input-item form-control" placeholder="" aria-describedby="helpId">
@@ -30,7 +30,7 @@
         <p class="red">{{ $message }}</p>
       @enderror
       <button type="submit" class="btn btn-success btn-control mt-3">Lưu</button>
-      <a href="{{ route('admin.product') }}" class="btn btn-control btn-primary ml-2 mt-3">Quay lại</a>
+      <a href="{{ route('admin.cat') }}" class="btn btn-control btn-primary ml-2 mt-3">Quay lại</a>
     </form>
   </div>
 

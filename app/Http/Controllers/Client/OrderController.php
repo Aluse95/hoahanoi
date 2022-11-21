@@ -1,4 +1,4 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Client;
 
 use App\Models\Users;
 use App\Models\Order;
@@ -152,7 +152,6 @@ class OrderController extends Controller {
 
 		$params = $request->all();
 		$item = [];
-
 		foreach($params['product'] as $key =>$val) {
 
 			$item[] = $key.' x '.$val;

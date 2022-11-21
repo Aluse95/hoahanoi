@@ -32,10 +32,10 @@
           <ul class="list-unstyled m-0 pt-4">
             <li class="dashboard-item"><a class="dashboard-link d-block" href="{{route('admin.product')}}"><i class="fa-solid fa-tag mr-3"></i>Sản phẩm</a></li>
             <li class="dashboard-item"><a class="dashboard-link d-block" href="{{route('admin.cat')}}"><i class="fa-sharp fa-solid fa-list-ul mr-3"></i>Danh mục</a></li>
-            <li class="dashboard-item"><a class="dashboard-link d-block" href="{{route('admin.product')}}"><i class="fa-solid fa-clipboard-check mr-3"></i>Đơn hàng</a></li>
-            <li class="dashboard-item"><a class="dashboard-link d-block" href="{{route('admin.product')}}"><i class="fa-regular fa-newspaper mr-3"></i>Bài viết</a></li>
-            <li class="dashboard-item"><a class="dashboard-link d-block" href="{{route('admin.product')}}"><i class="fa-solid fa-user-group mr-3"></i>Khách hàng</a></li>
-            <li class="dashboard-item"><a class="dashboard-link d-block" href="{{route('admin.product')}}"><i class="fa-solid fa-user-gear mr-3"></i>Quản trị viên</a></li>
+            <li class="dashboard-item"><a class="dashboard-link d-block" href="{{route('admin.order')}}"><i class="fa-solid fa-clipboard-check mr-3"></i>Đơn hàng</a></li>
+            <li class="dashboard-item"><a class="dashboard-link d-block" href="{{route('admin.news')}}"><i class="fa-regular fa-newspaper mr-3"></i>Bài viết</a></li>
+            <li class="dashboard-item"><a class="dashboard-link d-block" href="{{route('admin.user')}}"><i class="fa-solid fa-user-group mr-3"></i>Khách hàng</a></li>
+            <li class="dashboard-item"><a class="dashboard-link d-block" href="{{route('admin.admin')}}"><i class="fa-solid fa-user-gear mr-3"></i>Quản trị viên</a></li>
           </ul>
         </div>
         <div class="wrap-content col-lg-10 col-md-9 p-5">

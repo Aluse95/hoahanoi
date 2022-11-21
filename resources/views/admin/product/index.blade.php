@@ -8,6 +8,7 @@
     <form action="product/del" method="post">
         @csrf
         <div class="content p-4">
+            <h2 class="text-center mt-2">Danh sách sản phẩm</h2>
             <a href="{{ route('admin.product.add') }}" class="btn btn-control btn-primary mb-4 mr-2">Add Product</a>
             <button type="submit" class="btn-control btn btn-danger mb-4">Delete Option</button>
             <table class="table table-bordered mb-5">
@@ -31,32 +32,22 @@
                         <tr>
                             <td class="text-center"><input class="checkbox" type="checkbox" name="product_id[]" value="{{ $item->id }}"></td>
                             <td>
-                                <div class="content-detail">
-                                    {{ $item->name }}
-                                </div>
+                                <div class="content-detail">{{ $item->name }}</div>
                             </td>
                             <td>
-                                <div class="content-detail">
-                                    {{ $item->product_alias }}
-                                </div>
+                                <div class="content-detail">{{ $item->product_alias }}</div>
                             </td>
                             <td>{{ $item->cat->name }}</td>
                             <td>{{ $item->price }}</td>
                             <td>{{ $item->old_price }}</td>
                             <td>
-                                <div class="content-detail">
-                                    {!! $item->content !!}
-                                </div>
+                                <div class="content-detail">{!! $item->content !!}</div>
                             </td>
                             <td>
-                                <div class="content-detail">
-                                    {!! $item->description !!}
-                                </div>
+                                <div class="content-detail">{!! $item->description !!}</div>
                             </td>
                             <td>
-                                <div class="content-detail">
-                                    {{ $item->image }}
-                                </div>
+                                <div class="content-detail">{{ $item->image }}</div>
                             </td>
                             <td class="text-center pt-4">{{ $item->status }}</td>
                             <td class="text-center pt-4">

@@ -89,6 +89,7 @@ thead {
     background-color: #f3f3f3;
 }
 .content-detail {
+    min-height: 40px;
     max-height: 65px;
     overflow: hidden;
     display: -webkit-box;
@@ -99,5 +100,8 @@ thead {
     height: 36px;
     font-size: 1.4rem;
 }
-
+.btn-update {
+    width: 66px;
+    font-size: 1.2rem;
+}
 
