@@ -8,6 +8,7 @@
     <form action="cat/del" method="post">
         @csrf
         <div class="content p-4">
+            <h2 class="text-center mt-2">Danh sách danh mục</h2>
             <a href="{{ route('admin.cat.add') }}" class="btn btn-control btn-primary mb-4 mr-2">Add Category</a>
             <button type="submit" class="btn-control btn btn-danger mb-4">Delete Option</button>
             <table class="table table-bordered mb-5">
@@ -25,14 +26,10 @@
                         <tr>
                             <td class="text-center"><input class="checkbox" type="checkbox" name="cat_id[]" value="{{ $item->id }}"></td>
                             <td>
-                                <div class="content-detail">
-                                    {{ $item->name }}
-                                </div>
+                                <div class="content-detail">{{ $item->name }}</div>
                             </td>
                             <td>
-                                <div class="content-detail">
-                                    {{ $item->cat_alias }}
-                                </div>
+                                <div class="content-detail">{{ $item->cat_alias }}</div>
                             </td>
                             <td class="text-center pt-3">{{ $item->status }}</td>
                             <td class="text-center pt-3">

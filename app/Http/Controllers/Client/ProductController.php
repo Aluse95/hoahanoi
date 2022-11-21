@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client;
 use App\Models\Cat;
 use App\Models\News;
 use App\Models\Product;
 use App\Models\Comment;
 use App\Models\ReplyComment;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {

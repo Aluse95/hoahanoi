@@ -2,34 +2,28 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Cat;
-use App\Models\Product;
+use App\Models\News;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ProductsController extends Controller
+class NewsAdController extends Controller
 {
     public function index() {
 
-        $data = Product::paginate(6);
+        $data = News::paginate(6);
 
-        return view('admin.product.index', compact('data'));
+        return view('admin.news.index', compact('data'));
     }
 
     public function getAdd() {
 
-        $data = Cat::all();
-
-        return view('admin.product.add', compact('data'));
+        return view('admin.news.add');
     }
 
     public function postAdd(Request $request) {
 
         $validated = $request->validate([
             'name' => 'required',
-            'cat_id' => 'required',
-            'price' => 'required',
-            'old_price' => 'required',
             'content' => 'required',
             'image' => 'required',
             'description' => 'required'
@@ -57,86 +51,82 @@ class ProductsController extends Controller
             return $str;
         }
 
-        $data = Product::all();
+        $data = News::all();
+
         $alias = str_replace(' ', '-', strtolower(convert_name($request->name)));
-        $check = Product::where('product_alias', $alias)->first();
+
+        $check = News::where('news_alias', $alias)->first();
+
         $i = 1;
 
         while($check != null ) {
 
             $alias .= '-'.++$i;
-            
-            $check = Product::where('product_alias', $alias)->first();
+
+            $check = News::where('news_alias', $alias)->first();
         }
 
-        $product = new Product;
-        $product->name = $request->name;
-        $product->product_alias = $alias;
-        $product->cat_id = $request->cat_id;
-        $product->price = $request->price;
-        $product->content = $request->content;
-        $product->image = $request->image;
-        $product->description = $request->description;
-        $product->save();
+        $news = new News;
+        $news->name = $request->name;
+        $news->news_alias = $alias;
+        $news->image = $request->image;
+        $news->content = $request->content;
+        $news->description = $request->description;
+        $news->save();
 
-        return redirect()->route('admin.product');
+        return redirect()->route('admin.news');
     }
 
     public function getEdit($id) {
 
-        $item = Product::find($id);
+        $item = News::find($id);
 
-        return view('admin.product.edit', compact('item'));
+        return view('admin.news.edit', compact('item'));
     }
 
     public function postEdit(Request $request, $id) {
 
         $validated = $request->validate([
             'name' => 'required',
-            'product_alias' => 'required',
-            'price' => 'required',
-            'old_price' => 'required',
-            'content' => 'required',
             'image' => 'required',
+            'content' => 'required',
+            'news_alias' => 'required',
             'description' => 'required'
         ], [
             'required' => 'Vui lòng nhập trường này!'
         ]);
 
-        $product = Product::find($id);
-        $product->name = $request->name;
-        $product->product_alias = $request->product_alias;
-        $product->price = $request->price;
-        $product->old_price = $request->old_price;
-        $product->content = $request->content;
-        $product->image = $request->image;
-        $product->description = $request->description;
+        $news = News::find($id);
+        $news->name = $request->name;
+        $news->image = $request->image;
+        $news->content = $request->content;
+        $news->news_alias = $request->news_alias;
+        $news->description = $request->description;
+        $news->save();
 
-        $product->save();
-
-        return redirect()->route('admin.product');
+        return redirect()->route('admin.news');
     }
 
     public function del($id) {
 
-        $product = Product::find($id);
+        $news = News::find($id);
 
-        $product->delete();
+        $news->delete();
 
-        return redirect()->route('admin.product');
+        return redirect()->route('admin.news');
     }
 
     public function multiDel(Request $request) {
 
         $data = $request->all();
 
-        foreach($data['product_id'] as $id) {
+        foreach($data['news_id'] as $id) {
 
-            $product = Product::find($id);
+            $news = News::find($id);
 
-            $product->delete();
+            $news->delete();
         }
 
-        return redirect()->route('admin.product');
+        return redirect()->route('admin.news');
     }
 }

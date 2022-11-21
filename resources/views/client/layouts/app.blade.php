@@ -47,7 +47,7 @@
         <div class="container px-0">
           <div class="row align-items-center py-3 m-0">
             <div class="col-lg-3 col-12 pr-2 pl-0">
-              <a class="d-flex justify-content-center" href="./">
+              <a class="d-flex justify-content-center" href="{{ route('home') }}">
                 <img class="img-fluid h-100" src="client/assets/image/logo.jpg" alt="">
               </a>
             </div>
@@ -73,7 +73,7 @@
                 <div class="btn-search text-white border-0"><i class="fa-solid fa-magnifying-glass mt-3"></i></div>
               </div>
               <ul class="nav-mobile_list p-0 ml-3 list-unstyled">
-                <li class="nav-mobile_item"><a href="./">Trang chủ</a></li>
+                <li class="nav-mobile_item"><a href="{{ route('home') }}">Trang chủ</a></li>
                 <li class="nav-mobile_item"><a href="bo-hoa-dep">Bó hoa đẹp</a></li>
                 <li class="nav-mobile_item"><a href="gio-hoa-dep">Giỏ hoa đẹp</a></li>
                 <li class="nav-mobile_item"><a href="hoa-chia-buon">Hoa chia buồn</a></li>
