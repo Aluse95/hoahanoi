@@ -61,7 +61,7 @@
                             </td>
                             <td class="text-center pt-4">
                                 <a href="{{route('admin.order.edit', ['id'=> $item->id])}}" class="btn btn-warning"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a>
-                                <a onclick="return(confirm('Bạn muốn xóa danh mục này không ?'))" href="{{route('admin.order.del', ['id'=> $item->id])}}" class="btn btn-danger"><i class="fa-sharp fa-solid fa-rectangle-xmark"></i></a>
+                                <a onclick="return(confirm('Bạn muốn xóa đơn hàng này không ?'))" href="{{route('admin.order.del', ['id'=> $item->id])}}" class="btn btn-danger"><i class="fa-sharp fa-solid fa-rectangle-xmark"></i></a>
                             </td>
                         </tr>
                     @endforeach

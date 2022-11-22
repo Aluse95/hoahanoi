@@ -16,9 +16,5 @@ class Users extends Model
 
     public $timestamps = true;
 
-    public function product() {
-
-        return $this->belongsToMany(Product::class, 'product_user','user_id', 'product_id')
-        ->withPivot('id','quantity');
-    }
+    
 }

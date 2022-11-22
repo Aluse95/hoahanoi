@@ -13,7 +13,7 @@ class NewsController extends Controller
 
         $news = News::all();
 
-        $new_product = Product::where('status_product', 1)
+        $new_product = Product::where('status', 1)
         ->inRandomOrder()
         ->take(8)->get();
 

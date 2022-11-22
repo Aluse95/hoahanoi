@@ -2,94 +2,69 @@
 
 namespace App\Http\Controllers\Client;
 
-use App\Models\Users;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Crypt;
 
 class UserController extends Controller
 {
-    public function login() {
-
-        return view('client.login');
-    }
-
     public function register() {
 
         return view('client.register');
-    }
-
-    public function postLogin(Request $request) {
-
-        $validated = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:6'
-        ], [
-            'email.required' => 'Email không được trống',
-            'email.email' => 'Không đúng định dạng email',
-            'password.required' => 'Mật khẩu không được trống',
-            'password.min' => 'Mật khẩu không được nhỏ hơn :min ký tự',
-        ]);
-
-        $check = Users::where('email', $request->input('email'))->first();
-
-        if($check) {
-
-            $pass = md5($request->input('password'));
-
-            if($pass === $check->password) {
-
-                session()->put('customer',$check->email);
-                session()->put('name',$check->name);
-
-                return redirect('/bo-hoa-dep');
-
-            } else {
-                $message = 'Mật khẩu không chính xác!';
-
-                return view('client.login', compact('message'));
-            }
-
-        } else {
-
-            $message = 'Người dùng không tồn tại!';
-
-            return view('client.login', compact('message'));
-        }
     }
 
     public function postRegister(Request $request) {
 
         $validated = $request->validate([
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
             'password' => 'required|min:6'
         ],[
-            'email.required' => 'Email không được trống',
-            'email.email' => 'Không đúng định dạng email',
-            'password.required' => 'Mật khẩu không được trống',
-            'password.min' => 'Mật khẩu không được nhỏ hơn :min ký tự',
+            'email' => 'Không đúng định dạng email',
+            'required' => 'Vui lòng điền trường này!',
+            'unique' => 'Email đã tồn tại trên hệ thống',
+            'min' => 'Mật khẩu không được nhỏ hơn :min ký tự'
         ]);
 
-        $check = Users::where('email', $request->input('email'))->first();
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->save();
 
-        if($check) {
+        return redirect()->route('login')->with('message','Đăng kí thành công!');
+    }
 
-            $message = 'Email đã được sử dụng!';
+    public function login() {
 
-            return view('client.register', compact('message'));
+        return view('client.login');
+    }
 
-        } else {
+    public function postLogin(Request $request) {
 
-            $user = new Users;
-            $user->name = $request->input('name');
-            $user->email = $request->input('email');
-            $user->password = md5($request->input('password'));
-            $user->token = $request->input('_token');
-            $user->save();
+        $validated = $request->validate([
+            'email' => ['required','email'],
+            'password' => ['required']
+        ]);
 
-            session()->put('customer', $user->email);
+        if (Auth::attempt($validated)) {
 
-            return redirect('/gio-hoa-dep');
+            return redirect()->intended(route('home'));
         }
+
+        return back()->withErrors([
+
+            'email' => 'Email hoặc mật khẩu không chính xác!'
+
+        ])->onlyInput('email');
+    }
+
+    public function logout(Request $request) {
+
+        Auth::logout();
+    
+        return redirect()->route('home');
     }
 }

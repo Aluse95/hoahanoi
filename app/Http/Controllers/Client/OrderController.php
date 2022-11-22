@@ -1,90 +1,73 @@
 <?php namespace App\Http\Controllers\Client;
 
-use App\Models\Users;
+use App\Models\User;
 use App\Models\Order;
 use App\Models\Discount;
 use App\Models\OrderList;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
 class OrderController extends Controller {
 
 	public function index()
 	{
-		if(session()->has('customer')) {
+		$total = 0;
+		$data = Auth::user()->product;
 
-			$total = 0;
-			$user = Users::where('email', session('customer'))->first();
-			$data = $user->product;
-	
-			return view('client.order')
-			->with('data', $data)
-			->with('total', $total);
-		} else {
-
-			return redirect('login');
-		}
+		return view('client.order')
+		->with('data', $data)
+		->with('total', $total);
 	}
 
 	public function add(Request $request)
 	{
-		// session()->forget('customer');
-		if(session()->has('customer')) {
-
-			$validate = $request->validate([
-				'quantity' => 'required|integer',
-				'product_id' => 'required'
-			]);
-			
-			$user = Users::where('email', session('customer'))->first();
-			$data = $user->product;
-
-			$pro = new Order;
-			$pro->quantity = $request->input('quantity');
-			$pro->product_id = $request->input('product_id');
-			$pro->user_id = $user->id;
-
-			$product = [];
-
-			if($data->count() > 0) {
-
-				foreach($data as $item) {
-
-					$product[$item['id']] = $item->pivot->quantity;
-				}
-
-				if(array_key_exists($pro->product_id, $product)) {
+		$validate = $request->validate([
+			'quantity' => 'required|integer',
+		]);
 		
-					$pro->quantity = $product[$pro->product_id] + $request->input('quantity');
-		
-					$update = Order::where('user_id', $user->id)
-					->where('product_id', $pro->product_id )->first();
-		
-					$update->quantity = $pro->quantity;
-		
-					$update->save();
-		
-				} else {
+		$data = Auth::user()->product;
+		$id = Auth::user()->id;
+
+		$pro = new Order;
+		$pro->user_id = $id;
+		$pro->quantity = $request->quantity;
+		$pro->product_id = $request->product_id;
+
+		$product = [];
+
+		if($data->count() > 0) {
+
+			foreach($data as $item) {
+
+				$product[$item['id']] = $item->pivot->quantity;
+			}
+
+			if(array_key_exists($pro->product_id, $product)) {
 	
-					$pro->save();
-				}
-
+				$pro->quantity = $product[$pro->product_id] + $request->quantity;
+	
+				$update = Order::where('user_id', $id)
+				->where('product_id', $pro->product_id )->first();
+				$update->quantity = $pro->quantity;	
+				$update->save();
+	
 			} else {
 
 				$pro->save();
 			}
 
-			return redirect('cart');
-
 		} else {
 
-			return redirect('login');
+			$pro->save();
 		}
+
+		return redirect('cart');
 	}
 
 	public function update(Request $request)
 	{
-		$user = Users::where('email', session('customer'))->first();
+		$id = Auth::user()->id;
 
 		$params = $request->all();
 		
@@ -97,7 +80,7 @@ class OrderController extends Controller {
 		
 		foreach($params['flower'] as $key => $value) {
 
-			$item = Order::where('user_id', $user->id)
+			$item = Order::where('user_id', $id)
 			->where('product_id', $key )->first();
 
 			if($value > 0) {
@@ -126,19 +109,12 @@ class OrderController extends Controller {
 
 	public function detail() {
 
-		if(session()->has('customer')) {
+		$total = 0;
+		$data = Auth::user()->product;
 
-			$total = 0;
-			$user = Users::where('email', session('customer'))->first();
-			$data = $user->product;
-	
-			return view('client.payment')
-			->with('data', $data)
-			->with('total', $total);
-		} else {
-
-			return redirect('login');
-		}
+		return view('client.payment')
+		->with('data', $data)
+		->with('total', $total);
 	}
 
 	public function order(Request $request) {

@@ -33,19 +33,6 @@ class ProductController extends Controller
         
     }
 
-    public function news() {
-
-        $news = News::all();
-
-        $new_product = Product::where('status_product', 1)
-        ->inRandomOrder()
-        ->take(8)->get();
-
-        return view('client.news', compact('news','new_product'));
-    }
-
-
-
     public function category($cat_alias = null) {
 
         $all_cat = Cat::all();
@@ -88,7 +75,6 @@ class ProductController extends Controller
     
             return view('client.news_detail', compact('news','all_product','all_news','all_cmt','all_rep'));
         }
- 
         return view('client.error');
     }
 
@@ -103,11 +89,7 @@ class ProductController extends Controller
             return $data;
 
         } else {
-
             return;
         }
-
     }
-    
-
 }

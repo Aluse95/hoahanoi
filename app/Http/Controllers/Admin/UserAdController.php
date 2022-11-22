@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Users;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -10,7 +10,7 @@ class UserAdController extends Controller
 {
     public function index() {
 
-        $data = Users::paginate(6);
+        $data = User::paginate(6);
 
         return view('admin.user.index', compact('data'));
     }
@@ -24,26 +24,20 @@ class UserAdController extends Controller
 
         $validated = $request->validate([
             'name' => 'required',
-            'email' => 'required',
-            'password' => 'required'
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6'
         ], [
-            'required' => 'Vui lòng nhập trường này!'
+            'email' => 'Không đúng định dạng email',
+            'required' => 'Vui lòng điền trường này!',
+            'unique' => 'Email đã tồn tại trên hệ thống',
+            'min' => 'Mật khẩu không được nhỏ hơn :min ký tự'
         ]);
 
-        $check = Users::where('email', $request->email)->first();
-
-        if($check) {
-
-            return redirect()->back()->with('message', 'Email đã được sử dụng !');
-        } 
-
-        $user = new Users;
+        $user = new User;
         $user->name = $request->name;
-        $user->phone = $request->phone;
         $user->email = $request->email;
-        $user->address = $request->address;
-        $user->password = md5($request->password);
-        $user->remember_token = $request->input('_token');
+        $user->level = $request->level;
+        $user->password = bcrypt($request->password);
         $user->save();
 
         return redirect()->route('admin.user');
@@ -51,7 +45,7 @@ class UserAdController extends Controller
 
     public function getEdit($id) {
 
-        $item = Users::find($id);
+        $item = User::find($id);
 
         return view('admin.user.edit', compact('item'));
     }
@@ -65,11 +59,10 @@ class UserAdController extends Controller
             'required' => 'Vui lòng nhập trường này!'
         ]);
 
-        $user = Users::find($id);
+        $user = User::find($id);
         $user->name = $request->name;
-        $user->phone = $request->phone;
         $user->email = $request->email;
-        $user->address = $request->address;
+        $user->level = $request->level;
         $user->save();
 
         return redirect()->route('admin.user');
@@ -77,7 +70,7 @@ class UserAdController extends Controller
 
     public function del($id) {
 
-        $user = Users::find($id);
+        $user = User::find($id);
 
         $user->delete();
 
@@ -90,7 +83,7 @@ class UserAdController extends Controller
 
         foreach($data['user_id'] as $id) {
 
-            $user = Users::find($id);
+            $user = User::find($id);
 
             $user->delete();
         }

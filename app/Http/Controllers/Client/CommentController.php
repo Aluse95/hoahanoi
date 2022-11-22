@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Models\Comment;
 use App\Models\ReplyComment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
 class CommentController extends Controller
@@ -12,27 +13,19 @@ class CommentController extends Controller
     public function add(Request $request) {
 
         $validated = $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
             'content' => 'required'
         ],[
-            'name.required' => 'Tên không được trống',
-            'content.required' => 'Tên không được trống',
-            'email.required' => 'Email không được trống',
-            'email.email' => 'Không đúng định dạng email',
+            'required' => 'Vui lòng nhập trường này'
         ]);
-        // dd($request->all());
+       
         $cmt = new Comment;
-        $cmt->name = $request->input('name');
-        $cmt->email = $request->input('email');
+        $cmt->user_id = Auth::user()->id;
         $cmt->content = $request->input('content');
         $cmt->news_id = $request->input('news_id');
         $cmt->save();
 
         $id = Comment::max('id');
         $data = Comment::where('id', $id)->first();
-        session()->put('name',$data->name);
-
         return $data;
     }
 
@@ -41,9 +34,9 @@ class CommentController extends Controller
         $validated = $request->validate([
             'content' => 'required'
         ]);
-        // dd($request)->all();
+
         $reply = new ReplyComment;
-        $reply->name = $request->input('name');
+        $reply->user_id = Auth::user()->id;
         $reply->content = $request->input('content');
         $reply->comment_id = $request->input('comment_id');
         $reply->save();
