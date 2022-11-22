@@ -25,8 +25,11 @@
           @endif
           <div class="form-group">
             <label for="">Họ và tên</label>
-            <input type="text" name="name" value="" class="form-control input-login" placeholder="Nhập họ tên" aria-describedby="helpId">
+            <input type="text" name="name" value="{{ old('name') }}" class="form-control input-login" placeholder="Nhập họ tên" aria-describedby="helpId">
           </div>
+          @error('name')
+            <p class="red">{{ $message }}</p>
+          @enderror
           <div class="form-group mb-4">
             <label for="">Email</label>
             <input type="email" name="email" value="{{ old('email') }}" class="form-control input-login" placeholder="Nhập email..." aria-describedby="helpId">

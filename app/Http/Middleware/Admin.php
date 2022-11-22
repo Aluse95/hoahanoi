@@ -16,8 +16,11 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        
+        if ($request->user()->level) {
 
-        return;
+            return $next($request);
+        }
+
+        return redirect()->route('home');
     }
 }

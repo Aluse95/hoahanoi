@@ -16,37 +16,38 @@ use App\Http\Controllers\Admin\ProductsController;
 
 Route::get('/', [ProductController::class, 'home'])->name('home');
 
-Route::get('cart', [OrderController::class, 'index']);
-Route::post('cart/add',[OrderController::class, 'add']);
-Route::post('cart/update',[OrderController::class, 'update']);
-Route::get('cart/del/{id}',[OrderController::class, 'delete']);
+Route::middleware('auth')->group(function () {
+    
+    Route::get('cart', [OrderController::class, 'index'])->name('cart');
+    Route::post('cart/add',[OrderController::class, 'add']);
+    Route::post('cart/update',[OrderController::class, 'update']);
+    Route::get('cart/del/{id}',[OrderController::class, 'delete']);
+    
+    Route::get('payment',[OrderController::class, 'detail'])->name('payment');
+    Route::post('payment',[OrderController::class, 'order']);
+    Route::get('discount',[OrderController::class, 'discount']);
+});
 
-Route::get('payment',[OrderController::class, 'detail']);
-Route::post('payment',[OrderController::class, 'order']);
-Route::get('discount',[OrderController::class, 'discount']);
-
-Route::get('news', [ProductController::class, 'news']);
+Route::get('news', [NewsController::class, 'index']);
 Route::get('intro', [NewsController::class, 'intro']);
 Route::get('contact', [NewsController::class, 'contact']);
 
-Route::get('login', [UserController::class, 'login'] );
-Route::post('login', [UserController::class, 'postLogin'] );
 Route::get('register', [UserController::class, 'register'] );
 Route::post('register', [UserController::class, 'postRegister'] );
+Route::get('login', [UserController::class, 'login'] )->name('login');
+Route::post('login', [UserController::class, 'postLogin'] );
+Route::get('logout', [UserController::class, 'logout'] );
 
 Route::post('comment/add', [CommentController::class, 'add']);
 Route::post('comment/reply', [CommentController::class, 'reply']);
 
 Route::get('search', [ProductController::class, 'search']);
 // Route::get('news/{news_alias?}', [NewsController::class, 'detail']);
-
 Route::get('{cat_alias?}', [ProductController::class, 'category']);
-
 // Route::get('san-pham/{product_alias?}', [ProductController::class, 'detail']);
 
 // Trang dành cho Admin
-
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->middleware(['auth','admin'])->name('admin.')->group(function () {
 
     Route::get('home', [HomeController::class, 'index'])->name('home');
 
@@ -90,13 +91,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('user/edit/{id}', [UserAdController::class, 'postEdit']);
     Route::get('user/del/{id}', [UserAdController::class, 'del'])->name('user.del');
     Route::post('user/del', [UserAdController::class, 'multiDel']);
-
-    Route::get('admin', [AdminController::class, 'index'])->name('admin');
-    Route::get('admin/add', [AdminController::class, 'getAdd'])->name('admin.add');
-    Route::post('admin/add', [AdminController::class, 'postAdd']);
-    Route::get('admin/edit/{id}', [AdminController::class, 'getEdit'])->name('admin.edit');
-    Route::post('admin/edit/{id}', [AdminController::class, 'postEdit']);
-    Route::get('admin/del/{id}', [AdminController::class, 'del'])->name('admin.del');
 });
 
 

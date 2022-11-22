@@ -16,9 +16,8 @@
                     <tr class="text-center">
                         <th style="width:5%"><input type="checkbox" id="check"></th>
                         <th>Name</th>
-                        <th>Address</th>
-                        <th>Phone</th>
                         <th>Email</th>
+                        <th>Level</th>
                         <th style="width:8%">Action</th>
                     </tr>
                 </thead>
@@ -30,17 +29,14 @@
                                 <div class="content-detail">{{ $item->name }}</div>
                             </td>
                             <td>
-                                <div class="content-detail">{{ $item->address }}</div>
-                            </td>
-                            <td>
-                                <div class="content-detail">{{ $item->phone }}</div>
-                            </td>
-                            <td>
                                 <div class="content-detail">{{ $item->email }}</div>
+                            </td>
+                            <td>
+                                <div class="content-detail">{{ $item->level }}</div>
                             </td>
                             <td class="text-center pt-4">
                                 <a href="{{route('admin.user.edit', ['id'=> $item->id])}}" class="btn btn-warning"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a>
-                                <a onclick="return(confirm('Bạn muốn xóa danh mục này không ?'))" href="{{route('admin.user.del', ['id'=> $item->id])}}" class="btn btn-danger"><i class="fa-sharp fa-solid fa-rectangle-xmark"></i></a>
+                                <a onclick="return(confirm('Bạn muốn xóa người dùng này không ?'))" href="{{route('admin.user.del', ['id'=> $item->id])}}" class="btn btn-danger"><i class="fa-sharp fa-solid fa-rectangle-xmark"></i></a>
                             </td>
                         </tr>
                     @endforeach

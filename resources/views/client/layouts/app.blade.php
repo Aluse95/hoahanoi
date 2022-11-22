@@ -20,8 +20,9 @@
       <div class="header-top">
         <div class="container">
           <div class="row py-2">
-            <div class="col-lg-6 col-md-12 col-sm-12 text-white pl-0">
+            <div class="col-lg-6 col-md-12 col-sm-12 text-white pl-0 d-flex">
               <p class="m-0 header-text h-100">Điện hoa Hà Nội - Dịch vụ Hoa Tươi chuyên nghiệp và uy tín</p>
+              <a href="logout" class="ml-4">Đăng xuất</a>
             </div>
             <div class="col-lg-6 pr-0">
               <ul class="d-flex list-unstyled justify-content-end align-items-center m-0 h-100">

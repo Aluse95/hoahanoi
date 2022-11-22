@@ -65,6 +65,7 @@
 
 @section('js')
     <script>
+
         const subs = document.querySelectorAll('.sub');
         const adds = document.querySelectorAll('.add');
         const numbers = document.querySelectorAll('.number')

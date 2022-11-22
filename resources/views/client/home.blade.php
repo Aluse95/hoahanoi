@@ -35,12 +35,12 @@
           <div class="col-lg-3 col-sm-6 col-6 p-3">
             <div class="card position-relative">
               <div class="sale-off position-absolute d-flex"><span class="m-auto">{{round(100*($item->old_price - $item->price)/$item->old_price)}}%</span></div>
-              <a href="{{ $item->product_alias }}" class="wrap-img">
-                <img src={{ $item->image }} class="card-img-top" alt="...">
+              <a href="{{$item->product_alias}}" class="wrap-img">
+                  <img src="{{ $item->image }}" class="card-img-top" alt="...">
               </a>
               <div class="card-body text-center">
-                <a href="{{ $item->product_alias }}" class="card-title">{{ $item->name }}</a>
-                <p class="card-text text-center"><span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span></span>{{number_format($item->price)}}<span class="vnd">đ</span></p>
+                  <a href="{{$item->product_alias}}" class="card-title">{{$item->name}}</a>
+                  <p class="card-text text-center mt-3"><span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span></span>{{number_format($item->price)}}<span class="vnd">đ</span></p>
               </div>
             </div>
           </div>
@@ -59,12 +59,12 @@
           <div class="col-lg-3 col-sm-4 col-6 p-3">
             <div class="card position-relative">
               <div class="sale-off position-absolute d-flex"><span class="m-auto">{{round(100*($item->old_price - $item->price)/$item->old_price)}}%</span></div>
-              <div class="wrap-img">
-                <img src="{{ $item->image }}" class="card-img-top" alt="...">
-              </div>
+              <a href="{{$item->product_alias}}" class="wrap-img">
+                  <img src="{{ $item->image }}" class="card-img-top" alt="...">
+              </a>
               <div class="card-body text-center">
-                <a href="{{ $item->product_alias }}" class="card-title">{{ $item->name }}</a>
-                <p class="card-text text-center mt-3"><span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span></span>{{number_format($item->price)}}<span class="vnd">đ</span></p>
+                  <a href="{{$item->product_alias}}" class="card-title">{{$item->name}}</a>
+                  <p class="card-text text-center mt-3"><span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span></span>{{number_format($item->price)}}<span class="vnd">đ</span></p>
               </div>
             </div>
           </div>
@@ -83,12 +83,12 @@
           <div class="col-lg-3 col-sm-4 col-6 p-3">
             <div class="card position-relative">
               <div class="sale-off position-absolute d-flex"><span class="m-auto">{{round(100*($item->old_price - $item->price)/$item->old_price)}}%</span></div>
-              <div class="wrap-img">
-                <img src="{{ $item->image }}" class="card-img-top" alt="...">
-              </div>
+              <a href="{{$item->product_alias}}" class="wrap-img">
+                  <img src="{{ $item->image }}" class="card-img-top" alt="...">
+              </a>
               <div class="card-body text-center">
-                <a href="{{ $item->product_alias }}" class="card-title">{{ $item->name }}</a>
-                <p class="card-text text-center mt-3"><span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span></span>{{number_format($item->price)}}<span class="vnd">đ</span></p>
+                  <a href="{{$item->product_alias}}" class="card-title">{{$item->name}}</a>
+                  <p class="card-text text-center mt-3"><span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span></span>{{number_format($item->price)}}<span class="vnd">đ</span></p>
               </div>
             </div>
           </div>
@@ -107,12 +107,12 @@
           <div class="col-lg-3 col-sm-4 col-6 p-3">
             <div class="card position-relative">
               <div class="sale-off position-absolute d-flex"><span class="m-auto">{{round(100*($item->old_price - $item->price)/$item->old_price)}}%</span></div>
-              <div class="wrap-img">
-                <img src="{{ $item->image }}" class="card-img-top" alt="...">
-              </div>
+              <a href="{{$item->product_alias}}" class="wrap-img">
+                  <img src="{{ $item->image }}" class="card-img-top" alt="...">
+              </a>
               <div class="card-body text-center">
-                <a href="{{ $item->product_alias }}" class="card-title">{{ $item->name }}</a>
-                <p class="card-text text-center mt-3"><span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span></span>{{number_format($item->price)}}<span class="vnd">đ</span></p>
+                  <a href="{{$item->product_alias}}" class="card-title">{{$item->name}}</a>
+                  <p class="card-text text-center mt-3"><span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span></span>{{number_format($item->price)}}<span class="vnd">đ</span></p>
               </div>
             </div>
           </div>
@@ -131,12 +131,12 @@
           <div class="col-lg-3 col-sm-4 col-6 p-3">
             <div class="card position-relative">
               <div class="sale-off position-absolute d-flex"><span class="m-auto">{{round(100*($item->old_price - $item->price)/$item->old_price)}}%</span></div>
-              <div class="wrap-img">
-                <img src="{{ $item->image }}" class="card-img-top" alt="...">
-              </div>
+              <a href="{{$item->product_alias}}" class="wrap-img">
+                  <img src="{{ $item->image }}" class="card-img-top" alt="...">
+              </a>
               <div class="card-body text-center">
-                <a href="{{ $item->product_alias }}" class="card-title">{{ $item->name }}</a>
-                <p class="card-text text-center mt-3"><span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span></span>{{number_format($item->price)}}<span class="vnd">đ</span></p>
+                  <a href="{{$item->product_alias}}" class="card-title">{{$item->name}}</a>
+                  <p class="card-text text-center mt-3"><span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span></span>{{number_format($item->price)}}<span class="vnd">đ</span></p>
               </div>
             </div>
           </div>
@@ -158,13 +158,12 @@
             @foreach ($hoa_chia_buon as $item)
               <div class="swiper-slide">
                 <div class="card position-relative p-3">
-                  {{-- <div class="sale-off position-absolute d-flex"><span class="m-auto">{{round(100*($item->old_price - $item->price)/$item->old_price)}}%</span></div> --}}
-                  <div class="wrap-img slide-img">
-                    <img src="{{ $item->image }}" class="card-img-top img-fluid" alt="...">
-                  </div>
+                  <a href="{{$item->product_alias}}" class="wrap-img slide-img">
+                      <img src="{{ $item->image }}" class="card-img-top img-fluid" alt="...">
+                  </a>
                   <div class="card-body text-center">
-                    <a href="" class="card-title">{{ $item->name }}</a>
-                    <p class="card-text text-center mt-3">{{number_format($item->price)}}<span class="vnd">đ</span></p>
+                      <a href="{{$item->product_alias}}" class="card-title">{{$item->name}}</a>
+                      <p class="card-text text-center mt-3">{{number_format($item->price)}}<span class="vnd">đ</span></p>
                   </div>
                 </div>
               </div>

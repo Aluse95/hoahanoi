@@ -21,6 +21,9 @@
         <h2 class="text-center mb-4">ĐĂNG NHẬP</h2>
         <form action="" method="post">
           @csrf
+          @if (session('message'))
+          <div class="alert alert-success text-center">{{ session('message') }}</div>
+          @endif
           @if ($errors->any())
               <div class="alert alert-danger text-center">Vui lòng kiểm tra lại dữ liệu!</div>
           @endif
