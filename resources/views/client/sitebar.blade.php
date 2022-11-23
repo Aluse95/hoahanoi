@@ -5,9 +5,9 @@
           
         <li class="data-item">
           <div class="d-flex align-items-center py-3">
-            <i class="fa-solid fa-angles-right px-2"></i>
+            <i class="fa-solid fa-angles-right pr-2"></i>
             <div class="wrap-item d-flex align-items-center justify-content-between">
-              <a href="{{ $cat->cat_alias }}" class="data-link">{{ $cat->name }}</a>
+              <div class="data-link">{{ $cat->name }}</div>
               <i class="show-data fa-sharp fa-solid fa-chevron-down"></i>
             </div>
           </div>
@@ -17,7 +17,7 @@
                   <li class="d-flex align-items-start">
                     <i class="icon-show fa-solid fa-angles-right px-2 pt-2"></i>
                     <div>
-                      <a href="{{$article->product_alias}}" class="item-detail_link">{{$article->name}}</a>
+                      <a href="../san-pham/{{$article->product_alias}}" class="item-detail_link">{{$article->name}}</a>
                     </div>
                   </li>
                 @endforeach

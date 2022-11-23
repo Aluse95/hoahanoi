@@ -10,7 +10,7 @@
 
 @section('content')
 
-<div class="content p-5">
+<div class="content h-100 p-5">
   <form action="" method="post" class="content-add">
     @csrf
     @if (session('message'))

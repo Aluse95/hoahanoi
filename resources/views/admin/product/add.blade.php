@@ -9,7 +9,7 @@
 
 @section('content')
 
-  <div class="content p-5">
+  <div class="content h-100">
     <form action="" method="post" class="content-add">
       @csrf
       <h2 class="text-center">Thêm sản phẩm</h2>
@@ -34,13 +34,6 @@
         <input type="text" name="price" id="" class="input-item form-control " placeholder="" aria-describedby="helpId">
       </div>
       @error('price')
-        <p class="red">{{ $message }}</p>
-      @enderror
-      <div class="form-group mb-3">
-        <label for="">Giá cũ sản phẩm</label>
-        <input type="text" name="old_price" id="" class="input-item form-control " placeholder="" aria-describedby="helpId">
-      </div>
-      @error('old_price')
         <p class="red">{{ $message }}</p>
       @enderror
       <div class="form-group mb-3">

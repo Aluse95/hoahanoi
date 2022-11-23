@@ -31,6 +31,10 @@
     .icon-cart {
         width: 30px;
     }
+    .logo-img {
+        width: 80%;
+        margin: 0 auto;
+    }
     .btn-order {
         min-width: 60px;
     }
@@ -86,6 +90,9 @@
     }
     .container-data_list {
         display: none;
+    }
+    .news-img {
+        height: 300px;
     }
 }
 

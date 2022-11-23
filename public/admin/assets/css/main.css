@@ -83,6 +83,7 @@ html {
     min-width: 60px;
 }
 .content {
+    padding: 30px;
     background-color: #fff;
 }
 thead {
@@ -103,5 +104,55 @@ thead {
 .btn-update {
     width: 66px;
     font-size: 1.2rem;
+}
+.icon-menu {
+    height: 25px;
+    width: 30px;
+}
+.overlay {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.3);
+    animation: fadeIn linear 2.5s;
+}
+.nav-mobile {
+    position: fixed;
+    z-index: 20;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 300px;
+    background-color: #f6f5f5;
+    transform: translateX(-100%);
+    transition: transform linear 0.25s;
+}
+.nav-list {
+    text-transform: uppercase;
+}
+.nav-list a {
+    width: 100%;
+    display: block;
+    font-size: 1.5rem;
+    color: #424242;
+}
+.nav-item a:hover {
+    color: #e85495;
+    text-decoration: none;
+}
+.nav-item {
+    padding: 12px ;
+    border-top: 1px solid #ddd ;
+}
+
+.nav-close {
+    position: absolute;
+    font-size: 2.5rem;
+    right: 8px;
+    top: 0;
 }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Models\Cat;
 use App\Models\News;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -31,7 +32,7 @@ class NewsController extends Controller
             $all_product = Product::inRandomOrder()
             ->take(8)->get();
     
-            return view('client.news_detail', compact('news','all_product','all_news'));
+            return view('client.article', compact('news','all_product'));
         }
 
         return view('client.error');

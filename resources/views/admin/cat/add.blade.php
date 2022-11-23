@@ -6,7 +6,7 @@
 
 @section('content')
 
-  <div class="content p-5">
+  <div class="content h-100 p-5">
     <form action="" method="post" class="content-add">
       @csrf
       @if (session('message'))
@@ -15,13 +15,10 @@
         </div>
       @endif
       <h2 class="text-center">Thêm danh mục</h2>
-      <div class="form-group w-100 my-3">
+      <div class="form-group my-3">
         <label for="">Tên danh mục</label>
-        <input type="text" name="name" id="" class="input-item form-control mt-2" placeholder="" aria-describedby="helpId">
+        <input type="text" name="name" id="" class="input-item form-control mt-2" placeholder="Nhập tên danh mục" aria-describedby="helpId">
       </div>
-      @error('name')
-        <p class="red">{{ $message }}</p>
-      @enderror
       <button type="submit" class="btn btn-success btn-control mt-3">Lưu</button>
       <a href="{{ route('admin.cat') }}" class="btn btn-control btn-primary ml-2 mt-3">Quay lại</a>
     </form>

@@ -22,14 +22,13 @@
           <div class="row py-2">
             <div class="col-lg-6 col-md-12 col-sm-12 text-white pl-0 d-flex">
               <p class="m-0 header-text h-100">Điện hoa Hà Nội - Dịch vụ Hoa Tươi chuyên nghiệp và uy tín</p>
-              <a href="logout" class="ml-4">Đăng xuất</a>
             </div>
             <div class="col-lg-6 pr-0">
               <ul class="d-flex list-unstyled justify-content-end align-items-center m-0 h-100">
-                <li><a href="intro" class="text-white header-top_item px-3 border-0">Giới thiệu</a></li>
-                <li><a href="contact" class="text-white header-top_item px-3">Liên hệ</a></li>
-                <li><a href="news" class="text-white header-top_item px-3">Tin tức</a></li>
-                <li><a href="cart" class="text-white header-top_item px-3">Giỏ hàng</a></li>
+                <li><a href="{{ route('intro') }}" class="text-white header-top_item px-3 border-0">Giới thiệu</a></li>
+                <li><a href="{{ route('contact') }}" class="text-white header-top_item px-3">Liên hệ</a></li>
+                <li><a href="{{ route('news') }}" class="text-white header-top_item px-3">Tin tức</a></li>
+                <li><a href="{{ route('cart') }}" class="text-white header-top_item px-3">Giỏ hàng</a></li>
                 <div class="social-icon">
                   <a href="https://www.facebook.com/hanoiflorist.238"><i class="social-icon_head text-white ml-2 fa-brands fa-facebook-f"></i></a>
                   <a href="https://www.instagram.com/ciel.flower.shop"><i class="social-icon_head text-white ml-2 fa-brands fa-instagram insta"></i></a>
@@ -43,13 +42,13 @@
       </div>
       <div class="header-main d-flex align-items-center justify-content-center">
         <div class="icon-menu ml-4 mb-0 d-lg-none">
-          <img class="img-fluid w-100" src="client/assets/image/icon-menu.png">
+          <img class="img-fluid w-100" src="{{asset('client/assets/image/menu.png')}}">
         </div>
         <div class="container px-0">
           <div class="row align-items-center py-3 m-0">
             <div class="col-lg-3 col-12 pr-2 pl-0">
-              <a class="d-flex justify-content-center" href="{{ route('home') }}">
-                <img class="img-fluid h-100" src="client/assets/image/logo.jpg" alt="">
+              <a class="d-flex justify-content-center logo-img" href="{{ route('home') }}">
+                <img class="img-fluid h-100" src="{{asset('client/assets/image/logo.jpg')}}" alt="">
               </a>
             </div>
             <div class="header-main_search col-lg-6 d-flex align-items-center position-relative">
@@ -58,7 +57,7 @@
               <div class="data-search"></div>
             </div>
             <div class="header-main_contact col-lg-3 pr-0">
-              <img class="img-fluid float-right" src="client/assets/image/order.jpg" alt="">
+              <img class="img-fluid float-right" src="{{asset('client/assets/image/order.jpg')}}" alt="">
             </div>
             {{-- Nav-mobile --}}
             <div class="nav-overlay"></div>
@@ -67,56 +66,22 @@
                 <i class="fa-solid fa-xmark"></i>
               </label>
               <div class="p-4">
-                <img class="img-fluid w-100 p-2" src="client/assets/image/order.jpg" alt="">
+                <img class="img-fluid w-100 p-2" src="{{asset('client/assets/image/order.jpg')}}" alt="">
               </div>
-              <div class="d-flex align-items-center p-4 pb-5">
+              {{-- <div class="d-flex align-items-center p-4 pb-5">
                 <input class="search_input pl-3" type="text" placeholder="Tìm kiếm sản phẩm...">
                 <div class="btn-search text-white border-0"><i class="fa-solid fa-magnifying-glass mt-3"></i></div>
-              </div>
-              <ul class="nav-mobile_list p-0 ml-3 list-unstyled">
-                <li class="nav-mobile_item"><a href="{{ route('home') }}">Trang chủ</a></li>
-                <li class="nav-mobile_item"><a href="bo-hoa-dep">Bó hoa đẹp</a></li>
-                <li class="nav-mobile_item"><a href="gio-hoa-dep">Giỏ hoa đẹp</a></li>
-                <li class="nav-mobile_item"><a href="hoa-chia-buon">Hoa chia buồn</a></li>
-                <li class="nav-mobile_item"><a href="hoa-sap">Hoa sáp</a></li>
-              </ul>
-            </div>
-            <div class="menu-cart">
-              <label for="input-check" class="nav-mobile_close2">
-                <i class="fa-solid fa-xmark"></i>
-              </label>
-              <h3 class="text-center pt-5">GIỎ HÀNG</h3>
-              <div class="cart-product">
-                <div class="cart-product_img">
-                  <img src="client/assets/image/order.jpg" alt="">
-                </div>
-                <div>
-                  <?php if(isset($product)){?>
-                    <h3>{!! $product->name !!}</h3>
-                    <p></p><span>x</span><span class="card-text card-text_price">{!! number_format($product->price) !!}</span><span class="vnd">đ</span>
-                  <?php } ?>
-                </div>
-                <div class="cart-close">
-                  <i class="fa-solid fa-xmark"></i>
-                </div>
-              </div>
+              </div> --}}
+              @yield('nav-mobile')
             </div>
           </div>
         </div>
         <a href="cart" class="icon-cart mr-4 d-lg-none">
-          <img class="img-fluid w-100 float-right" src="client/assets/image/icon-cart.png" alt="">
+          <img class="img-fluid w-100 float-right" src="{{asset('client/assets/image/icon-cart.png')}}" alt="">
         </a>
       </div>
       <div class="header-nav">
-        <div class="container">
-          <ul class="nav-list d-flex justify-content-center list-unstyled text-uppercase m-0"> 
-            <li class="nav-item"><a href="./" class="nav-item_link active">Trang chủ</a></li>
-            <li class="nav-item"><a href="bo-hoa-dep" class="nav-item_link">Bó hoa đẹp</a></li>
-            <li class="nav-item"><a href="gio-hoa-dep" class="nav-item_link">Giỏ hoa đẹp</a></li>
-            <li class="nav-item"><a href="hoa-chia-buon" class="nav-item_link">Hoa chia buồn</a></li>
-            <li><a href="hoa-sap" class="nav-item_link">Hoa sáp</a></li>
-          </ul>
-        </div>
+        @yield('nav')
       </div>
       <div class="header-bottom"></div>
     
@@ -131,7 +96,7 @@
           <div class="row">
             <div class="col-md-4 col-sm-12">
                 <div class="footer-logo mb-5">
-                  <img class="img-fluid h-100" src="client/assets/image/logo.jpg" alt="">
+                  <img class="img-fluid h-100" src="{{asset('client/assets/image/logo.jpg')}}" alt="">
                 </div>
                 <h3 class="footer-title mb-4">Hanoi Florist - Shop hoa tươi Online tại Hà Nội</h3>
                 <p class="footer-text">Tự hào là một trong những Shop hoa tươi cung cấp các dịch vụ hoa tươi chuyên nghiệp và uy tín nhất, chúng tôi mong muốn nhận được nhiều hơn nữa sự tin tưởng và ủng hộ của khách hàng.</p>
@@ -154,7 +119,7 @@
             </div>
             <div class="col-md-4 col-sm-12">
                 <div class="footer-logo mb-5">
-                  <img class="img-fluid h-100" src="client/assets/image/order.jpg" alt="">
+                  <img class="img-fluid h-100" src="{{asset('client/assets/image/order.jpg')}}" alt="">
                 </div>
                 <p class="footer-text">Chẳng phải đợi lâu, bạn chỉ cần điện đặt hàng và hoa sẽ được giao tận nơi trong nội thành Hà Nội trong chưa đầy 1h.</p>
                 <ul class="footer-list pl-4 m-0">
@@ -196,46 +161,6 @@
 @yield('js')
 
 <script type="text/javascript">
-
-  function search_ajax(){
-    $.ajax({
-        url : "search",
-        type : "get",
-        data : {
-          name : $('#search_input').val(),
-        },
-        success : function (data){
-          if(data) {
-            $.each(data, function(index, value) {
-              $('.data-search').append(
-              `<a href="${value['product_alias']}" class="item-search p-3">
-                <div class="d-flex align-items-center">
-                  <div class="img-search">
-                    <img class="img-fluid w-100 h-100" src="${value['image']}" alt="">
-                  </div>
-                  <div class="data-name ml-4">${value['name']}</div>
-                </div>
-                <div class="data-price">${value['price'].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} đ</div>
-              </a>`)
-            })
-          } else {
-            $('.data-search').append('<p class="py-3 m-0 ml-4">Không tìm thấy sản phẩm!</p>')
-          }
-          // $('#search_input').focus(function() {
-          //   $('.data-search').html('')
-          // })
-          $(document).click(function (e)
-          {
-            var container = $('.data-search'); //Đối tượng cần ẩn
-            
-            if (!container.is(e.target) && container.has(e.target).length === 0) // Nếu click bên ngoài đối tượng container thì ẩn nó đi
-            {
-              $('.data-search').html('')
-            }
-          });
-        }
-    });
-  }
 
   $('.icon-menu').click(function() {
     $('.nav-mobile').css("transform","translateX(0)")

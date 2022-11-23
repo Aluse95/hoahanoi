@@ -5,9 +5,9 @@
 @endsection
 
 @section('content')
-    <form action="user/del" method="post">
+    <form action="user/del" method="post" class="h-100">
         @csrf
-        <div class="content p-4">
+        <div class="content h-100 p-5">
             <h2 class="text-center mt-2">Danh sách người dùng</h2>
             <a href="{{ route('admin.user.add') }}" class="btn btn-control btn-primary mb-4 mr-2">Add User</a>
             <button type="submit" class="btn-control btn btn-danger mb-4">Delete Option</button>
@@ -15,10 +15,11 @@
                 <thead>
                     <tr class="text-center">
                         <th style="width:5%"><input type="checkbox" id="check"></th>
-                        <th>Name</th>
-                        <th>Email</th>
+                        <th style="width:15%">Name</th>
+                        <th class="email2">Email</th>
+                        <th class="image">Avatar</th>
                         <th>Level</th>
-                        <th style="width:8%">Action</th>
+                        <th style="width:10%">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,15 +29,23 @@
                             <td>
                                 <div class="content-detail">{{ $item->name }}</div>
                             </td>
-                            <td>
+                            <td class="email2">
                                 <div class="content-detail">{{ $item->email }}</div>
+                            </td>
+                            <td class="image">
+                                <div class="content-detail">{{ $item->image }}</div>
                             </td>
                             <td>
                                 <div class="content-detail">{{ $item->level }}</div>
                             </td>
                             <td class="text-center pt-4">
-                                <a href="{{route('admin.user.edit', ['id'=> $item->id])}}" class="btn btn-warning"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a>
-                                <a onclick="return(confirm('Bạn muốn xóa người dùng này không ?'))" href="{{route('admin.user.del', ['id'=> $item->id])}}" class="btn btn-danger"><i class="fa-sharp fa-solid fa-rectangle-xmark"></i></a>
+                                <a href="{{route('admin.user.edit', ['id'=> $item->id])}}" class="btn btn-warning btn-product">
+                                    <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+                                </a>
+                                <a onclick="return(confirm('Bạn muốn xóa người dùng này không ?'))"
+                                href="{{route('admin.user.del', ['id'=> $item->id])}}" class="btn btn-danger">
+                                <i class="fa-sharp fa-solid fa-rectangle-xmark"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach
