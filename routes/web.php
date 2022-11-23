@@ -20,7 +20,7 @@ Route::middleware('auth')->group(function () {
     
     Route::get('cart', [OrderController::class, 'index'])->name('cart');
     Route::post('cart/add',[OrderController::class, 'add']);
-    Route::post('cart/update',[OrderController::class, 'update']);
+    Route::post('cart/update',[OrderController::class, 'update'])->name('cart.update');
     Route::get('cart/del/{id}',[OrderController::class, 'delete']);
     
     Route::get('payment',[OrderController::class, 'detail'])->name('payment');
@@ -28,23 +28,24 @@ Route::middleware('auth')->group(function () {
     Route::get('discount',[OrderController::class, 'discount']);
 });
 
-Route::get('news', [NewsController::class, 'index']);
-Route::get('intro', [NewsController::class, 'intro']);
-Route::get('contact', [NewsController::class, 'contact']);
+Route::get('news', [NewsController::class, 'index'])->name('news');
+Route::get('intro', [NewsController::class, 'intro'])->name('intro');
+Route::get('contact', [NewsController::class, 'contact'])->name('contact');
 
 Route::get('register', [UserController::class, 'register'] );
 Route::post('register', [UserController::class, 'postRegister'] );
 Route::get('login', [UserController::class, 'login'] )->name('login');
 Route::post('login', [UserController::class, 'postLogin'] );
-Route::get('logout', [UserController::class, 'logout'] );
+Route::get('logout', [UserController::class, 'logout'] )->name('logout');
 
-Route::post('comment/add', [CommentController::class, 'add']);
-Route::post('comment/reply', [CommentController::class, 'reply']);
+Route::post('comment/add', [CommentController::class, 'add'])->name('comment');
+Route::post('comment/reply', [CommentController::class, 'reply'])->name('reply');
 
-Route::get('search', [ProductController::class, 'search']);
-// Route::get('news/{news_alias?}', [NewsController::class, 'detail']);
-Route::get('{cat_alias?}', [ProductController::class, 'category']);
-// Route::get('san-pham/{product_alias?}', [ProductController::class, 'detail']);
+Route::get('search', [ProductController::class, 'search'])->name('search');
+
+Route::get('bai-viet/{alias?}', [ProductController::class, 'news']);
+Route::get('danh-muc/{alias?}', [ProductController::class, 'category']);
+Route::get('san-pham/{alias?}', [ProductController::class, 'product']);
 
 // Trang dành cho Admin
 Route::prefix('admin')->middleware(['auth','admin'])->name('admin.')->group(function () {

@@ -13,7 +13,7 @@ class ProductController extends Controller
 {
     public function home() {
 
-        $data = new Product();
+        $data = new Product;
 
         $hoa_tuan_nay = $data->getByCatIdExcept(3,4);
 
@@ -33,50 +33,67 @@ class ProductController extends Controller
         
     }
 
-    public function category($cat_alias = null) {
+    public function product($alias = null) {
 
-        $all_cat = Cat::all();
+        $product = Product::where('product_alias', $alias)->first();
 
-        $cat = Cat::where('cat_alias', $cat_alias)->first();
+        if($product) {
 
-        $news = News::where('news_alias', $cat_alias)->first();
-
-        $product = Product::where('product_alias', $cat_alias)->first();
-
-        if($cat) {
-
-            $all_product = $cat->product;
-
-            return view('client.cat', compact('cat','all_cat', 'all_product'));
-
-        } else if($product) {
-
+            $all_cat = Cat::all();
+    
             $cat = $product->cat;
-
-            $desc = Product::whereNot('cat_id', 3)->inRandomOrder()->take(5)->get();
-
+    
+            $desc = Product::whereNot('cat_id', 3)
+            ->inRandomOrder()->take(5)->get();
+    
             $product_like = Product::where('cat_id', $cat->id)
-            ->whereNot('product_alias', $cat_alias)
+            ->whereNot('product_alias', $alias)
             ->take(6)->get();
-
+    
             $news = News::take(4)->get();
-
+    
             return view('client.product', compact('cat','product','desc','product_like','news','all_cat'));
+        }
 
-        } else if($news) {
+        return view('client.error');
+    }
 
+
+    public function news($alias = null) {
+
+        $news = News::where('news_alias', $alias)->first();
+
+        if($news) {
+            
             $all_news = News::take(6)->get();
     
             $all_product = Product::inRandomOrder()
             ->take(8)->get();
-
+    
             $all_cmt = Comment::all();
             $all_rep = ReplyComment::all();
     
-            return view('client.news_detail', compact('news','all_product','all_news','all_cmt','all_rep'));
+            return view('client.article', compact('news','all_product','all_news','all_cmt','all_rep'));
         }
+
         return view('client.error');
     }
+
+    public function category($alias = null) {
+
+        $all_cat = Cat::all();
+
+        $cat = Cat::where('cat_alias', $alias)->first();
+
+        if($cat) {
+            
+            $all_product = $cat->product;
+    
+            return view('client.cat', compact('cat','all_product','all_cat'));
+        }
+
+        return view('client.error');
+    } 
 
     public function search(Request $request) {
 
@@ -89,6 +106,7 @@ class ProductController extends Controller
             return $data;
 
         } else {
+            
             return;
         }
     }

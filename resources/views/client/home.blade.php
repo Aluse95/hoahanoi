@@ -4,6 +4,26 @@
   Trang chủ
 @endsection
 
+@section('nav')
+<div class="container">
+  <ul class="nav-list d-flex justify-content-center list-unstyled text-uppercase m-0"> 
+    <li class="nav-item"><a href="{{ route('home') }}" class="nav-item_link active">Trang chủ</a></li>
+    @foreach ($cats as $item)
+      <li class="nav-item"><a href="danh-muc/{{$item->cat_alias}}" class="nav-item_link">{{ $item->name }}</a></li>
+    @endforeach
+  </ul>
+</div>
+@endsection
+
+@section('nav-mobile')
+<ul class="nav-mobile_list p-0 ml-3 list-unstyled">
+  <li class="nav-mobile_item"><a href="{{ route('home') }}">Trang chủ</a></li>
+  @foreach ($cats as $item)
+        <li class="nav-mobile_item"><a href="danh-muc/{{$item->cat_alias}}">{{ $item->name }}</a></li>
+    @endforeach
+</ul>
+@endsection
+
 @section('slide')
   <div class="swiper">
     <!-- Additional required wrapper -->
@@ -34,13 +54,22 @@
         @foreach($hoa_tuan_nay as $item)
           <div class="col-lg-3 col-sm-6 col-6 p-3">
             <div class="card position-relative">
-              <div class="sale-off position-absolute d-flex"><span class="m-auto">{{round(100*($item->old_price - $item->price)/$item->old_price)}}%</span></div>
+              @if ($item->old_price)
+                <div class="sale-off position-absolute d-flex">
+                  <span class="m-auto">{{round(100*($item->old_price - $item->price)/$item->old_price)}}%</span>
+                </div>
+              @endif
               <a href="{{$item->product_alias}}" class="wrap-img">
                   <img src="{{ $item->image }}" class="card-img-top" alt="...">
               </a>
               <div class="card-body text-center">
                   <a href="{{$item->product_alias}}" class="card-title">{{$item->name}}</a>
-                  <p class="card-text text-center mt-3"><span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span></span>{{number_format($item->price)}}<span class="vnd">đ</span></p>
+                  <p class="card-text text-center mt-3">
+                    @if ($item->old_price)
+                    <span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span>
+                    @endif
+                    </span>{{number_format($item->price)}}<span class="vnd">đ</span>
+                  </p>
               </div>
             </div>
           </div>
@@ -48,6 +77,7 @@
       </div>
     </div>
   </div>
+  
   <div class="container-products pt-5">
     <div class="container px-3 pb-3">
       <div class="product-heading d-flex justify-content-between align-items-center mb-2">
@@ -58,13 +88,22 @@
         @foreach($bo_hoa_dep as $item)
           <div class="col-lg-3 col-sm-4 col-6 p-3">
             <div class="card position-relative">
-              <div class="sale-off position-absolute d-flex"><span class="m-auto">{{round(100*($item->old_price - $item->price)/$item->old_price)}}%</span></div>
+              @if ($item->old_price)
+                <div class="sale-off position-absolute d-flex">
+                  <span class="m-auto">{{round(100*($item->old_price - $item->price)/$item->old_price)}}%</span>
+                </div>
+              @endif
               <a href="{{$item->product_alias}}" class="wrap-img">
                   <img src="{{ $item->image }}" class="card-img-top" alt="...">
               </a>
               <div class="card-body text-center">
                   <a href="{{$item->product_alias}}" class="card-title">{{$item->name}}</a>
-                  <p class="card-text text-center mt-3"><span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span></span>{{number_format($item->price)}}<span class="vnd">đ</span></p>
+                  <p class="card-text text-center mt-3">
+                    @if ($item->old_price)
+                    <span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span>
+                    @endif
+                    </span>{{number_format($item->price)}}<span class="vnd">đ</span>
+                  </p>
               </div>
             </div>
           </div>
@@ -82,13 +121,22 @@
         @foreach($gio_hoa_dep as $item)
           <div class="col-lg-3 col-sm-4 col-6 p-3">
             <div class="card position-relative">
-              <div class="sale-off position-absolute d-flex"><span class="m-auto">{{round(100*($item->old_price - $item->price)/$item->old_price)}}%</span></div>
+              @if ($item->old_price)
+                <div class="sale-off position-absolute d-flex">
+                  <span class="m-auto">{{round(100*($item->old_price - $item->price)/$item->old_price)}}%</span>
+                </div>
+              @endif
               <a href="{{$item->product_alias}}" class="wrap-img">
                   <img src="{{ $item->image }}" class="card-img-top" alt="...">
               </a>
               <div class="card-body text-center">
                   <a href="{{$item->product_alias}}" class="card-title">{{$item->name}}</a>
-                  <p class="card-text text-center mt-3"><span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span></span>{{number_format($item->price)}}<span class="vnd">đ</span></p>
+                  <p class="card-text text-center mt-3">
+                    @if ($item->old_price)
+                    <span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span>
+                    @endif
+                    </span>{{number_format($item->price)}}<span class="vnd">đ</span>
+                  </p>
               </div>
             </div>
           </div>
@@ -106,13 +154,22 @@
         @foreach($hoa_sap as $item)
           <div class="col-lg-3 col-sm-4 col-6 p-3">
             <div class="card position-relative">
-              <div class="sale-off position-absolute d-flex"><span class="m-auto">{{round(100*($item->old_price - $item->price)/$item->old_price)}}%</span></div>
+              @if ($item->old_price)
+                <div class="sale-off position-absolute d-flex">
+                  <span class="m-auto">{{round(100*($item->old_price - $item->price)/$item->old_price)}}%</span>
+                </div>
+              @endif
               <a href="{{$item->product_alias}}" class="wrap-img">
                   <img src="{{ $item->image }}" class="card-img-top" alt="...">
               </a>
               <div class="card-body text-center">
                   <a href="{{$item->product_alias}}" class="card-title">{{$item->name}}</a>
-                  <p class="card-text text-center mt-3"><span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span></span>{{number_format($item->price)}}<span class="vnd">đ</span></p>
+                  <p class="card-text text-center mt-3">
+                    @if ($item->old_price)
+                    <span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span>
+                    @endif
+                    </span>{{number_format($item->price)}}<span class="vnd">đ</span>
+                  </p>
               </div>
             </div>
           </div>
@@ -130,13 +187,22 @@
         @foreach($hoa_khai_truong as $item)
           <div class="col-lg-3 col-sm-4 col-6 p-3">
             <div class="card position-relative">
-              <div class="sale-off position-absolute d-flex"><span class="m-auto">{{round(100*($item->old_price - $item->price)/$item->old_price)}}%</span></div>
+              @if ($item->old_price)
+                <div class="sale-off position-absolute d-flex">
+                  <span class="m-auto">{{round(100*($item->old_price - $item->price)/$item->old_price)}}%</span>
+                </div>
+              @endif
               <a href="{{$item->product_alias}}" class="wrap-img">
                   <img src="{{ $item->image }}" class="card-img-top" alt="...">
               </a>
               <div class="card-body text-center">
                   <a href="{{$item->product_alias}}" class="card-title">{{$item->name}}</a>
-                  <p class="card-text text-center mt-3"><span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span></span>{{number_format($item->price)}}<span class="vnd">đ</span></p>
+                  <p class="card-text text-center mt-3">
+                    @if ($item->old_price)
+                    <span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span>
+                    @endif
+                    </span>{{number_format($item->price)}}<span class="vnd">đ</span>
+                  </p>
               </div>
             </div>
           </div>
@@ -245,6 +311,46 @@
 
 @section('js')
   <script type="text/javascript">
+
+    function search_ajax(){
+      $.ajax({
+          url : "{{route('search')}}",
+          type : "get",
+          data : {
+            name : $('#search_input').val(),
+          },
+          success : function (data){
+            if(data) {
+              $.each(data, function(index, value) {
+                $('.data-search').append(
+                `<a href="san-pham/${value['product_alias']}" class="item-search p-3">
+                  <div class="d-flex align-items-center">
+                    <div class="img-search">
+                      <img class="img-fluid w-100 h-100" src="${value['image']}" alt="">
+                    </div>
+                    <div class="data-name ml-4">${value['name']}</div>
+                  </div>
+                  <div class="data-price">${value['price'].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} đ</div>
+                </a>`)
+              })
+            } else {
+              $('.data-search').append('<p class="py-3 m-0 ml-4">Không tìm thấy sản phẩm!</p>')
+            }
+            // $('#search_input').focus(function() {
+            //   $('.data-search').html('')
+            // })
+            $(document).click(function (e)
+            {
+              var container = $('.data-search'); //Đối tượng cần ẩn
+              
+              if (!container.is(e.target) && container.has(e.target).length === 0) // Nếu click bên ngoài đối tượng container thì ẩn nó đi
+              {
+                $('.data-search').html('')
+              }
+            });
+          }
+      });
+    }
 
     const swiper = new Swiper('.swiper', {
       // Optional parameters

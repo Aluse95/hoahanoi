@@ -6,7 +6,7 @@
 
 @section('content')
 
-  <div class="content p-5">
+  <div class="content h-100 p-5">
     <form action="" method="post" class="content-add">
       @csrf
       @if (session('message'))
@@ -29,6 +29,10 @@
       @error('cat_alias')
         <p class="red">{{ $message }}</p>
       @enderror
+      <div class="form-group w-100 my-3">
+        <label for="">Trạng thái</label>
+        <input type="number" name="status" max="1" min="0" value="{{ $item->status }}" class="input-item form-control mt-2" placeholder="" aria-describedby="helpId">
+      </div>
       <button type="submit" class="btn btn-success btn-control mt-3">Lưu</button>
       <a href="{{ route('admin.cat') }}" class="btn btn-control btn-primary ml-2 mt-3">Quay lại</a>
     </form>

@@ -15,18 +15,37 @@
   <body>
     <div class="contain-fluid">
       <div class="header d-flex justify-content-between align-items-center">
-        <div class="ml-4 pb-1 font-weight-bold">
-          <i class="fa-solid fa-house mr-3"></i>Bảng điều khiển
+        <div class="icon-menu ml-4 mb-0 d-md-none">
+          <img class="img-fluid w-100" src="{{asset('client/assets/image/menu.png')}}">
         </div>
+        <a href="{{ route('admin.home') }}" class="ml-4 pb-1 font-weight-bold header">
+          <i class="fa-solid fa-house mr-3"></i>Bảng điều khiển
+        </a>
         <div class="d-flex align-items-center mr-4">
-          <div class="mb-1">Mạnh Tưởng</div>
+          <div class="mb-1">{{Auth::user()->name}}</div>
           <div class="user-img mx-3">
-            <img class="img-fluid w-100 h-100" src="../client/assets/image/news1.jpg" alt="">
+            <img class="img-fluid w-100 h-100" src="{{Auth::user()->image}}" alt="">
           </div>
-          <a href="" class="user-logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+          <a href="{{route('logout')}}" class="user-logout"><i class="fa-solid fa-right-from-bracket"></i></a>
         </div>
       </div>
-
+      <div class="overlay"></div>
+      <div class="nav-mobile py-5">
+        <div class="nav-close">
+          <i class="fa-solid fa-xmark"></i>
+        </div>
+        <div class="p-4">
+          <img class="img-fluid w-100 p-2" src="{{asset('client/assets/image/order.jpg')}}" alt="">
+        </div>
+        <ul class="nav-list p-0 ml-3 list-unstyled">
+          <li class="nav-item"><a href="{{ route('admin.home') }}">Trang chủ</a></li>
+          <li class="nav-item"><a href="{{ route('admin.product') }}">Sản phẩm</a></li>
+          <li class="nav-item"><a href="{{ route('admin.cat') }}">Danh mục</a></li>
+          <li class="nav-item"><a href="{{ route('admin.order') }}">Đơn hàng</a></li>
+          <li class="nav-item"><a href="{{ route('admin.news') }}">Bài viết</a></li>
+          <li class="nav-item"><a href="{{ route('admin.user') }}">Người dùng</a></li>
+        </ul>
+      </div>
       <div class="d-flex">
         <div class="dashboard col-lg-2 col-md-3">
           <ul class="list-unstyled m-0 pt-4">
@@ -52,3 +71,18 @@
   </body>
 </html>
 @yield('js')
+
+<script>
+  $('.icon-menu').click(function() {
+    $('.nav-mobile').css("transform","translateX(0)")
+    $('.overlay').show()
+  })
+  $('.overlay').click(function() {
+    $('.overlay').hide()
+    $('.nav-mobile').css("transform","translateX(-100%)")
+  })
+  $('.nav-close').click(function() {
+    $('.overlay').hide()
+    $('.nav-mobile').css("transform","translateX(-100%)")
+  })
+</script>

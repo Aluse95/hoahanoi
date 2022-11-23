@@ -29,7 +29,6 @@ class ProductsController extends Controller
             'name' => 'required',
             'cat_id' => 'required',
             'price' => 'required',
-            'old_price' => 'required',
             'content' => 'required',
             'image' => 'required',
             'description' => 'required'
@@ -72,10 +71,10 @@ class ProductsController extends Controller
         $product = new Product;
         $product->name = $request->name;
         $product->product_alias = $alias;
-        $product->cat_id = $request->cat_id;
         $product->price = $request->price;
-        $product->content = $request->content;
         $product->image = $request->image;
+        $product->cat_id = $request->cat_id;
+        $product->content = $request->content;
         $product->description = $request->description;
         $product->save();
 
@@ -105,12 +104,12 @@ class ProductsController extends Controller
 
         $product = Product::find($id);
         $product->name = $request->name;
-        $product->product_alias = $request->product_alias;
         $product->price = $request->price;
-        $product->old_price = $request->old_price;
-        $product->content = $request->content;
         $product->image = $request->image;
+        $product->content = $request->content;
+        $product->old_price = $request->old_price;
         $product->description = $request->description;
+        $product->product_alias = $request->product_alias;
 
         $product->save();
 

@@ -4,6 +4,26 @@
     {{$news->name}}
 @endsection
 
+@section('nav')
+<div class="container">
+  <ul class="nav-list d-flex justify-content-center list-unstyled text-uppercase m-0"> 
+    <li class="nav-item"><a href="{{ route('home') }}" class="nav-item_link active">Trang chủ</a></li>
+    @foreach ($cats as $item)
+      <li class="nav-item"><a href="../danh-muc/{{$item->cat_alias}}" class="nav-item_link">{{ $item->name }}</a></li>
+    @endforeach
+  </ul>
+</div>
+@endsection
+
+@section('nav-mobile')
+<ul class="nav-mobile_list p-0 ml-3 list-unstyled">
+  <li class="nav-mobile_item"><a href="{{ route('home') }}">Trang chủ</a></li>
+    @foreach ($cats as $item)
+        <li class="nav-mobile_item"><a href="../danh-muc/{{$item->cat_alias}}">{{ $item->name }}</a></li>
+    @endforeach
+</ul>
+@endsection
+
 @section('meta')
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
@@ -14,7 +34,11 @@
     <div class="container wrap-data p-5">
         <div class="row">
             <div class="col-lg-9 col-12">
-                <div class="link-path mb-4"><a href="{{route('home')}}">Trang chủ</a><span class="mx-2">></span><a href="./">Tin tức</a><span class="mx-2">></span><a href="">{{$news->name}}</a></div>
+                <div class="link-path mb-4">
+                    <a href="{{route('home')}}">Trang chủ</a>
+                    <span class="mx-2">></span><a href="{{route('news')}}">Tin tức</a>
+                    <span class="mx-2">></span><a href="">{{$news->name}}</a>
+                </div>
                 <h1 class="text-dark">{{$news->name}}</h1>
                 <p class="desc-text">{!!$news->content!!}</p>
                 <div class="news-detail_img w-75 mx-auto my-5">
@@ -92,7 +116,7 @@
                     @foreach ($all_news as $item)
                         <li class="data-item d-flex align-items-center p-3">
                             <div class="wrap-data_img mr-3">
-                                <img class="img-fluid h-100" src="{{ $item->image }}" alt="">
+                                <img class="img-fluid h-100 w-100" src="{{ $item->image }}" alt="">
                             </div>
                             <a href="{{ $item->news_alias }}" class="data-link data-link_detail">{{ $item->content }}</a>
                         </li>                       
@@ -103,9 +127,9 @@
                     @foreach ($all_product as $item)
                         <li class="data-item d-flex align-items-center p-3">
                             <div class="wrap-data_img mr-3">
-                                <img class="img-fluid h-100" src="{{ $item->image }}" alt="">
+                                <img class="img-fluid h-100 w-100" src="{{ $item->image }}" alt="">
                             </div>
-                            <a href="{{ $item->product_alias }}" class="data-link data-link_detail">{{ $item->content }}</a>
+                            <a href="../san-pham/{{ $item->product_alias }}" class="data-link data-link_detail">{{ $item->content }}</a>
                         </li>                       
                     @endforeach
                 </ul>
@@ -124,10 +148,50 @@
             }
         });
 
+        function search_ajax(){
+            $.ajax({
+                url : "{{route('search')}}",
+                type : "get",
+                data : {
+                name : $('#search_input').val(),
+                },
+                success : function (data){
+                if(data) {
+                    $.each(data, function(index, value) {
+                    $('.data-search').append(
+                    `<a href="../san-pham/${value['product_alias']}" class="item-search p-3">
+                        <div class="d-flex align-items-center">
+                        <div class="img-search">
+                            <img class="img-fluid w-100 h-100" src="${value['image']}" alt="">
+                        </div>
+                        <div class="data-name ml-4">${value['name']}</div>
+                        </div>
+                        <div class="data-price">${value['price'].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} đ</div>
+                    </a>`)
+                    })
+                } else {
+                    $('.data-search').append('<p class="py-3 m-0 ml-4">Không tìm thấy sản phẩm!</p>')
+                }
+                // $('#search_input').focus(function() {
+                //   $('.data-search').html('')
+                // })
+                $(document).click(function (e)
+                {
+                    var container = $('.data-search'); //Đối tượng cần ẩn
+                    
+                    if (!container.is(e.target) && container.has(e.target).length === 0) // Nếu click bên ngoài đối tượng container thì ẩn nó đi
+                    {
+                    $('.data-search').html('')
+                    }
+                });
+                }
+            });
+        }
+
         function comment_ajax(){
             
             $.ajax({
-                url : "comment/add",
+                url : "{{route('comment')}}",
                 type : "post",
                 data : {
                     content : $('#comment-content').val(),
@@ -161,7 +225,7 @@
         function reply_ajax(id){
             
             $.ajax({
-                url : "comment/reply",
+                url : "{{route('reply')}}",
                 type : "post",
                 data : {
                     content : $('#input-rep_'+ id).val(),

@@ -5,9 +5,9 @@
 @endsection
 
 @section('content')
-    <form action="cat/del" method="post">
+    <form action="cat/del" method="post" class="h-100">
         @csrf
-        <div class="content p-4">
+        <div class="content h-100 p-5">
             <h2 class="text-center mt-2">Danh sách danh mục</h2>
             <a href="{{ route('admin.cat.add') }}" class="btn btn-control btn-primary mb-4 mr-2">Add Category</a>
             <button type="submit" class="btn-control btn btn-danger mb-4">Delete Option</button>
@@ -31,10 +31,21 @@
                             <td>
                                 <div class="content-detail">{{ $item->cat_alias }}</div>
                             </td>
-                            <td class="text-center pt-3">{{ $item->status }}</td>
                             <td class="text-center pt-3">
-                                <a href="{{route('admin.cat.edit', ['id'=> $item->id])}}" class="btn btn-warning"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a>
-                                <a onclick="return(confirm('Bạn muốn xóa danh mục này không ?'))" href="{{route('admin.cat.del', ['id'=> $item->id])}}" class="btn btn-danger"><i class="fa-sharp fa-solid fa-rectangle-xmark"></i></a>
+                                @if ($item->status == 1)
+                                    Hoạt động
+                                @else
+                                    Vô hiệu
+                                @endif
+                            </td>
+                            <td class="text-center pt-3">
+                                <a href="{{route('admin.cat.edit', ['id'=> $item->id])}}" class="btn btn-warning btn-product">
+                                    <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+                                </a>
+                                <a onclick="return(confirm('Bạn muốn xóa danh mục này không ?'))" 
+                                href="{{route('admin.cat.del', ['id'=> $item->id])}}" class="btn btn-danger">
+                                <i class="fa-sharp fa-solid fa-rectangle-xmark"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach

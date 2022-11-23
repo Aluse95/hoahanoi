@@ -4,6 +4,26 @@
     Đơn hàng
 @endsection
 
+@section('nav')
+<div class="container">
+  <ul class="nav-list d-flex justify-content-center list-unstyled text-uppercase m-0"> 
+    <li class="nav-item"><a href="{{ route('home') }}" class="nav-item_link active">Trang chủ</a></li>
+    @foreach ($cats as $item)
+      <li class="nav-item"><a href="danh-muc/{{$item->cat_alias}}" class="nav-item_link">{{ $item->name }}</a></li>
+    @endforeach
+  </ul>
+</div>
+@endsection
+
+@section('nav-mobile')
+<ul class="nav-mobile_list p-0 ml-3 list-unstyled">
+    <li class="nav-mobile_item"><a href="{{ route('home') }}">Trang chủ</a></li>
+    @foreach ($cats as $item)
+        <li class="nav-mobile_item"><a href="danh-muc/{{$item->cat_alias}}">{{ $item->name }}</a></li>
+    @endforeach
+</ul>
+@endsection
+
 @section('container')
     <div class="container">
         @if ($data->count() > 0)
@@ -12,8 +32,8 @@
                     {{ session('message') }}
                 </div>
             @endif
-            <h2 class="text-center mb-5 mt-3">THÔNG TIN GIỎ HÀNG</h2>
-            <form action="cart/update" method="POST">
+            <h2 class="text-center mb-5 mt-3">THÔNG TIN GIỎ HÀNG (<a href="{{route('logout')}}" class="mx-2">Đăng xuất</a>)</h2>
+            <form action="{{route('cart.update')}}" method="POST">
                 @csrf
                 <table class="table table-bordered text-center table-order">
                     <tr>
@@ -47,11 +67,11 @@
                 </table>
 
                 <button type="submit" class="btn-order btn btn-success pt-1 mt-3">Cập nhật</button>
-                <a href="bo-hoa-dep" class="btn-order btn btn-primary ml-3 pt-2 mt-3">Quay lại</a>
+                <a href="{{route('home')}}" class="btn-order btn btn-primary ml-3 pt-1 mt-3">Quay lại</a>
                 <div class="btn float-right btn-total">Tổng tiền</div>
             </form>
             <div class="text-right mb-5">
-                <a href="payment" class="btn-order btn btn-info mr-3 mb-2 pt-2">Thanh toán tại đây</a>
+                <a href="{{route('payment')}}" class="btn-order btn btn-info mr-3 mb-2 pt-1">Thanh toán tại đây</a>
                 <div class="total-price px-4 mr-5">{{ number_format($total) }}<span class="vnd ml-2">đ</span></div>
             </div>
         @else
@@ -65,6 +85,47 @@
 
 @section('js')
     <script>
+
+        function search_ajax(){
+
+            $.ajax({
+                url : "{{route('search')}}",
+                type : "get",
+                data : {
+                name : $('#search_input').val(),
+                },
+                success : function (data){
+                if(data) {
+                    $.each(data, function(index, value) {
+                    $('.data-search').append(
+                    `<a href="san-pham/${value['product_alias']}" class="item-search p-3">
+                        <div class="d-flex align-items-center">
+                        <div class="img-search">
+                            <img class="img-fluid w-100 h-100" src="${value['image']}" alt="">
+                        </div>
+                        <div class="data-name ml-4">${value['name']}</div>
+                        </div>
+                        <div class="data-price">${value['price'].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} đ</div>
+                    </a>`)
+                    })
+                } else {
+                    $('.data-search').append('<p class="py-3 m-0 ml-4">Không tìm thấy sản phẩm!</p>')
+                }
+                // $('#search_input').focus(function() {
+                //   $('.data-search').html('')
+                // })
+                $(document).click(function (e)
+                {
+                    var container = $('.data-search'); //Đối tượng cần ẩn
+                    
+                    if (!container.is(e.target) && container.has(e.target).length === 0) // Nếu click bên ngoài đối tượng container thì ẩn nó đi
+                    {
+                    $('.data-search').html('')
+                    }
+                });
+                }
+            });
+        }
 
         const subs = document.querySelectorAll('.sub');
         const adds = document.querySelectorAll('.add');
@@ -84,5 +145,10 @@
                 number.value++;
             }
         })
+    </script>
+@endsection
+@section('js')
+    <script>
+
     </script>
 @endsection

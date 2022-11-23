@@ -60,8 +60,8 @@ class CatController extends Controller
         }
 
         $cat = new Cat;
-        $cat->name = $request->name;
         $cat->cat_alias = $alias;
+        $cat->name = $request->name;
         $cat->save();
 
         return redirect()->route('admin.cat');
