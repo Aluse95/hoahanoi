@@ -4,14 +4,18 @@
     {{$cat->name}}
 @endsection
 
+
+
 @section('nav')
 <div class="container">
-  <ul class="nav-list d-flex justify-content-center list-unstyled text-uppercase m-0"> 
-    <li class="nav-item"><a href="{{ route('home') }}" class="nav-item_link active">Trang chủ</a></li>
-    @foreach ($cats as $item)
-      <li class="nav-item"><a href="{{$item->cat_alias}}" class="nav-item_link">{{ $item->name }}</a></li>
-    @endforeach
-  </ul>
+    <ul class="nav-list d-flex justify-content-center list-unstyled text-uppercase m-0"> 
+        <li class="nav-item"><a href="{{ route('home') }}" class="nav-item_link active">Trang chủ</a></li>
+        @foreach ($cats as $item)
+            <li class="nav-item position-relative nav-border">
+                <a href="{{$item->cat_alias}}" class="nav-item_link">{{ $item->name }}</a>
+            </li>
+        @endforeach
+    </ul>
 </div>
 @endsection
 
@@ -51,11 +55,11 @@
                                     <span class="m-auto">{{round(100*($item->old_price - $item->price)/$item->old_price)}}%</span>
                                     </div>
                                 @endif
-                                <a href="../san-pham/{{$item->product_alias}}" class="wrap-img wrap-img_cat">
+                                <a href="{{ route('san-pham', ['alias'=>$item->product_alias]) }}" class="wrap-img wrap-img_cat">
                                     <img src="{{ $item->image }}" class="card-img-top" alt="...">
                                 </a>
                                 <div class="card-body text-center">
-                                    <a href="../san-pham/{{$item->product_alias}}" class="card-title">{{$item->name}}</a>
+                                    <a href="{{ route('san-pham', ['alias'=>$item->product_alias]) }}" class="card-title">{{$item->name}}</a>
                                     <p class="card-text text-center mt-3">
                                         @if ($item->old_price)
                                         <span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span>
@@ -73,7 +77,7 @@
 @endsection
 
 @section('js')
-    <script>
+    <script type="text/javascript">
         function search_ajax(){
             $.ajax({
                 url : "{{route('search')}}",

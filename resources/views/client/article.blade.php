@@ -6,12 +6,14 @@
 
 @section('nav')
 <div class="container">
-  <ul class="nav-list d-flex justify-content-center list-unstyled text-uppercase m-0"> 
-    <li class="nav-item"><a href="{{ route('home') }}" class="nav-item_link active">Trang chủ</a></li>
-    @foreach ($cats as $item)
-      <li class="nav-item"><a href="../danh-muc/{{$item->cat_alias}}" class="nav-item_link">{{ $item->name }}</a></li>
-    @endforeach
-  </ul>
+    <ul class="nav-list d-flex justify-content-center list-unstyled text-uppercase m-0"> 
+        <li class="nav-item"><a href="{{ route('home') }}" class="nav-item_link active">Trang chủ</a></li>
+        @foreach ($cats as $item)
+            <li class="nav-item position-relative nav-border">
+                <a href="../danh-muc/{{$item->cat_alias}}" class="nav-item_link">{{ $item->name }}</a>
+            </li>
+        @endforeach
+    </ul>
 </div>
 @endsection
 
@@ -47,7 +49,9 @@
                 <h2>Đặt hoa chúc mừng khai trương cửa hàng tại Hanoi Florist</h2>
                 <p class="desc-text">{!!$news->description!!}</p>
                 <h4 class="mb-5">Hanoi Florist - Dich Vụ Điện Hoa Hà Nội Giao Hoa Tận Nơi</h4>
-                <h4 class="mb-5">Inbox trực tiếp tại Fanpage: <span class="pink-color">Điện hoa Hà Nội - Shop hoa tươi Hanoi Florist</span></h4>
+                <h4 class="mb-5">Inbox trực tiếp tại Fanpage: 
+                    <span class="pink-color">Điện hoa Hà Nội - Shop hoa tươi Hanoi Florist</span>
+                </h4>
                 <h4 class="mb-5">Zalo /Imess : Ms Huyền - 0902133725 Hotline: 0886291555</h4>
                 <h4 class="">141/236 Giáp Nhị - Hoàng Mai - Hà Nội</h4>
                 <hr>

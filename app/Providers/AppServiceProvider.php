@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $cats = Cat::take(4)->get();
+        $cats = Cat::where('status',1)->take(4)->get();
 
         View::share('cats', $cats);
 

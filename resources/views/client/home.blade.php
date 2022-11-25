@@ -7,9 +7,11 @@
 @section('nav')
 <div class="container">
   <ul class="nav-list d-flex justify-content-center list-unstyled text-uppercase m-0"> 
-    <li class="nav-item"><a href="{{ route('home') }}" class="nav-item_link active">Trang chủ</a></li>
+    <li class="nav-item"><a href="{{ route('home') }}" class="active">Trang chủ</a></li>
     @foreach ($cats as $item)
-      <li class="nav-item"><a href="danh-muc/{{$item->cat_alias}}" class="nav-item_link">{{ $item->name }}</a></li>
+      <li class="nav-item position-relative nav-border">
+        <a href="{{route('danh-muc',['alias'=>$item->cat_alias])}}" class="nav-item_link">{{ $item->name }}</a>
+      </li>
     @endforeach
   </ul>
 </div>
@@ -19,7 +21,7 @@
 <ul class="nav-mobile_list p-0 ml-3 list-unstyled">
   <li class="nav-mobile_item"><a href="{{ route('home') }}">Trang chủ</a></li>
   @foreach ($cats as $item)
-        <li class="nav-mobile_item"><a href="danh-muc/{{$item->cat_alias}}">{{ $item->name }}</a></li>
+        <li class="nav-mobile_item"><a href="{{route('danh-muc',['alias'=>$item->cat_alias])}}">{{ $item->name }}</a></li>
     @endforeach
 </ul>
 @endsection
@@ -59,11 +61,11 @@
                   <span class="m-auto">{{round(100*($item->old_price - $item->price)/$item->old_price)}}%</span>
                 </div>
               @endif
-              <a href="{{$item->product_alias}}" class="wrap-img">
+              <a href="{{route('san-pham',['alias'=>$item->product_alias])}}" class="wrap-img">
                   <img src="{{ $item->image }}" class="card-img-top" alt="...">
               </a>
               <div class="card-body text-center">
-                  <a href="{{$item->product_alias}}" class="card-title">{{$item->name}}</a>
+                  <a href="{{route('san-pham',['alias'=>$item->product_alias])}}" class="card-title">{{$item->name}}</a>
                   <p class="card-text text-center mt-3">
                     @if ($item->old_price)
                     <span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span>
@@ -77,15 +79,19 @@
       </div>
     </div>
   </div>
-  
+  @foreach ($total as $key => $value)
   <div class="container-products pt-5">
     <div class="container px-3 pb-3">
       <div class="product-heading d-flex justify-content-between align-items-center mb-2">
-        <h3 class="text-white heading-detail m-0">BÓ HOA ĐẸP</h3>
-        <a href="bo-hoa-dep" class="view-all">Xem tất cả <i class="fa-solid fa-angle-right ml-2"></i></a>
+        <h3 class="text-white heading-detail m-0">{{ $key }}</h3>
+        @foreach ($cats as $cat)
+          @if ($cat->name == $key)
+            <a href="{{route('danh-muc',['alias'=>$cat->cat_alias])}}" class="view-all">Xem tất cả <i class="fa-solid fa-angle-right ml-2"></i></a>
+          @endif
+        @endforeach
       </div>
       <div class="row">
-        @foreach($bo_hoa_dep as $item)
+        @foreach($value as $item)
           <div class="col-lg-3 col-sm-4 col-6 p-3">
             <div class="card position-relative">
               @if ($item->old_price)
@@ -93,11 +99,11 @@
                   <span class="m-auto">{{round(100*($item->old_price - $item->price)/$item->old_price)}}%</span>
                 </div>
               @endif
-              <a href="{{$item->product_alias}}" class="wrap-img">
+              <a href="{{route('san-pham',['alias'=>$item->product_alias])}}" class="wrap-img">
                   <img src="{{ $item->image }}" class="card-img-top" alt="...">
               </a>
               <div class="card-body text-center">
-                  <a href="{{$item->product_alias}}" class="card-title">{{$item->name}}</a>
+                  <a href="{{route('san-pham',['alias'=>$item->product_alias])}}" class="card-title">{{$item->name}}</a>
                   <p class="card-text text-center mt-3">
                     @if ($item->old_price)
                     <span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span>
@@ -111,110 +117,12 @@
       </div>
     </div>
   </div>
-  <div class="container-products pt-5">
-    <div class="container px-3 pb-3">
-      <div class="product-heading d-flex justify-content-between align-items-center mb-2">
-        <h3 class="text-white heading-detail m-0">GIỎ HOA ĐẸP</h3>
-        <a href="gio-hoa-dep" class="view-all">Xem tất cả <i class="fa-solid fa-angle-right ml-2"></i></a>
-      </div>
-      <div class="row">
-        @foreach($gio_hoa_dep as $item)
-          <div class="col-lg-3 col-sm-4 col-6 p-3">
-            <div class="card position-relative">
-              @if ($item->old_price)
-                <div class="sale-off position-absolute d-flex">
-                  <span class="m-auto">{{round(100*($item->old_price - $item->price)/$item->old_price)}}%</span>
-                </div>
-              @endif
-              <a href="{{$item->product_alias}}" class="wrap-img">
-                  <img src="{{ $item->image }}" class="card-img-top" alt="...">
-              </a>
-              <div class="card-body text-center">
-                  <a href="{{$item->product_alias}}" class="card-title">{{$item->name}}</a>
-                  <p class="card-text text-center mt-3">
-                    @if ($item->old_price)
-                    <span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span>
-                    @endif
-                    </span>{{number_format($item->price)}}<span class="vnd">đ</span>
-                  </p>
-              </div>
-            </div>
-          </div>
-        @endforeach
-      </div>
-    </div>
-  </div>
-  <div class="container-products pt-5">
-    <div class="container px-3 pb-3">
-      <div class="product-heading d-flex justify-content-between align-items-center mb-2">
-        <h3 class="text-white heading-detail m-0">HOA SÁP</h3>
-        <a href="hoa-sap" class="view-all">Xem tất cả <i class="fa-solid fa-angle-right ml-2"></i></a>
-      </div>
-      <div class="row">
-        @foreach($hoa_sap as $item)
-          <div class="col-lg-3 col-sm-4 col-6 p-3">
-            <div class="card position-relative">
-              @if ($item->old_price)
-                <div class="sale-off position-absolute d-flex">
-                  <span class="m-auto">{{round(100*($item->old_price - $item->price)/$item->old_price)}}%</span>
-                </div>
-              @endif
-              <a href="{{$item->product_alias}}" class="wrap-img">
-                  <img src="{{ $item->image }}" class="card-img-top" alt="...">
-              </a>
-              <div class="card-body text-center">
-                  <a href="{{$item->product_alias}}" class="card-title">{{$item->name}}</a>
-                  <p class="card-text text-center mt-3">
-                    @if ($item->old_price)
-                    <span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span>
-                    @endif
-                    </span>{{number_format($item->price)}}<span class="vnd">đ</span>
-                  </p>
-              </div>
-            </div>
-          </div>
-        @endforeach
-      </div>
-    </div>
-  </div>
-  <div class="container-products pt-5">
-    <div class="container px-3 pb-3">
-      <div class="product-heading d-flex justify-content-between align-items-center mb-2">
-        <h3 class="text-white heading-detail m-0">HOA CHÚC MỪNG KHAI TRƯƠNG</h3>
-        <a href="hoa-chuc-mung-khai-truong" class="view-all">Xem tất cả <i class="fa-solid fa-angle-right ml-2"></i></a>
-      </div>
-      <div class="row">
-        @foreach($hoa_khai_truong as $item)
-          <div class="col-lg-3 col-sm-4 col-6 p-3">
-            <div class="card position-relative">
-              @if ($item->old_price)
-                <div class="sale-off position-absolute d-flex">
-                  <span class="m-auto">{{round(100*($item->old_price - $item->price)/$item->old_price)}}%</span>
-                </div>
-              @endif
-              <a href="{{$item->product_alias}}" class="wrap-img">
-                  <img src="{{ $item->image }}" class="card-img-top" alt="...">
-              </a>
-              <div class="card-body text-center">
-                  <a href="{{$item->product_alias}}" class="card-title">{{$item->name}}</a>
-                  <p class="card-text text-center mt-3">
-                    @if ($item->old_price)
-                    <span class="old-price mr-3">{{number_format($item->old_price)}}<span class="vnd">đ</span>
-                    @endif
-                    </span>{{number_format($item->price)}}<span class="vnd">đ</span>
-                  </p>
-              </div>
-            </div>
-          </div>
-        @endforeach
-      </div>
-    </div>
-  </div>
+  @endforeach
   <div class="container-slide">
     <div class="container px-3 py-5">
       <div class="container-heading d-flex justify-content-between align-items-center mb-5">
         <h3 class="text-white heading-detail m-0">HOA CHIA BUỒN</h3>
-        <a href="hoa-chia-buon" class="view-all">Xem tất cả <i class="fa-solid fa-angle-right ml-2"></i></a>
+        <a href="danh-muc/hoa-chia-buon" class="view-all">Xem tất cả <i class="fa-solid fa-angle-right ml-2"></i></a>
       </div>
       <div class="wrap-slide p-4">
         <div class="swiper2">
@@ -224,11 +132,11 @@
             @foreach ($hoa_chia_buon as $item)
               <div class="swiper-slide">
                 <div class="card position-relative p-3">
-                  <a href="{{$item->product_alias}}" class="wrap-img slide-img">
+                  <a href="{{route('san-pham',['alias'=>$item->product_alias])}}" class="wrap-img slide-img">
                       <img src="{{ $item->image }}" class="card-img-top img-fluid" alt="...">
                   </a>
                   <div class="card-body text-center">
-                      <a href="{{$item->product_alias}}" class="card-title">{{$item->name}}</a>
+                      <a href="{{route('san-pham',['alias'=>$item->product_alias])}}" class="card-title">{{$item->name}}</a>
                       <p class="card-text text-center mt-3">{{number_format($item->price)}}<span class="vnd">đ</span></p>
                   </div>
                 </div>
@@ -251,18 +159,18 @@
         <div class="col-lg-3 col-md-6 col-12 p-4">
           <div class="card position-relative">
             {{-- <div class="sale-off position-absolute d-flex"><span class="m-auto">{{round(100*($item->old_price - $item->price)/$item->old_price)}}%</span></div> --}}
-            <div class="wrap-img wrap-img_news">
+            <a href="{{route('bai-viet',['alias'=>$item->news_alias])}}" class="wrap-img wrap-img_news">
               <img src="{{ $item->image }}" class="img-fluid w-100 h-100" alt="...">
-            </div>
+            </a>
             <div class="card-body text-left">
-              <a href="" class="card-title">{{ $item->name }}</a>
+              <a href="{{route('bai-viet',['alias'=>$item->news_alias])}}" class="card-title">{{ $item->name }}</a>
               <p class="text-news mt-3">{{ $item->content }}</p>
             </div>
           </div>
         </div>
         @endforeach
       </div>
-      <a href="tin-tuc" class="btn btn-news my-3">Xem thêm</a>
+      <a href="{{route('news')}}" class="btn btn-news my-3">Xem thêm</a>
     </div>
   </div>
   <div class="container-service">

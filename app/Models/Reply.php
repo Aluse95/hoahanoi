@@ -7,11 +7,11 @@ use App\Models\Comment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class ReplyComment extends Model
+class Reply extends Model
 {
     use HasFactory;
 
-    protected $table = 'reply-comment';
+    protected $table = 'reply';
 
     protected $fillable = ['comment_id', 'content','name'];
 

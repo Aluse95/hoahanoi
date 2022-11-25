@@ -9,7 +9,7 @@ class OrderList extends Model
 {
     use HasFactory;
 
-    protected $table = 'don_hang';
+    protected $table = 'orders';
 
     protected $fillable = ['name','firstname','address','email','phone','city','note','product','price'];
 
