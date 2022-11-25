@@ -27,10 +27,20 @@ html {
     opacity: 0.9;
 }
 .header-top_item {
+    color: #fff;
     font-size: 1.3rem;
-    border-left: 1px solid #ed76aa;
 }
-
+.header-top_item:hover {
+    color: #fff;
+}
+.item-border::before {
+    top: 12px;
+    content: "";
+    height: 12px;
+    position: absolute;
+    transform: translateY(-50%);
+    border-left: 1px solid #e4e4e4;
+}
 .header-main_search {
     padding-left: 60px;
 }
@@ -74,7 +84,6 @@ html {
     font-weight: 500;
     padding: 0 13px;
     font-weight: 500;
-    position: relative;
 }
 
 .nav-list a:hover {
@@ -84,13 +93,13 @@ html {
 .active {
     color: #e85495 !important;
 }
-.nav-item::after {
-    position: absolute;
+.nav-border::before {
+    top: 12px;
     content: "";
     height: 14px;
-    top: 152px;
-    border-left: 1px solid #e5e5e5;
+    position: absolute;
     transform: translateY(-50%);
+    border-left: 1px solid #e4e4e4;
 }
 .icon-show {
     font-size: 0.9rem;

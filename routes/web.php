@@ -19,7 +19,7 @@ Route::get('/', [ProductController::class, 'home'])->name('home');
 Route::middleware('auth')->group(function () {
     
     Route::get('cart', [OrderController::class, 'index'])->name('cart');
-    Route::post('cart/add',[OrderController::class, 'add']);
+    Route::post('cart/add',[OrderController::class, 'add'])->name('cart.add');
     Route::post('cart/update',[OrderController::class, 'update'])->name('cart.update');
     Route::get('cart/del/{id}',[OrderController::class, 'delete']);
     
@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
 Route::get('news', [NewsController::class, 'index'])->name('news');
 Route::get('intro', [NewsController::class, 'intro'])->name('intro');
 Route::get('contact', [NewsController::class, 'contact'])->name('contact');
+Route::get('bai-viet/{alias?}', [NewsController::class, 'news'])->name('bai-viet');
 
 Route::get('register', [UserController::class, 'register'] );
 Route::post('register', [UserController::class, 'postRegister'] );
@@ -43,9 +44,8 @@ Route::post('comment/reply', [CommentController::class, 'reply'])->name('reply')
 
 Route::get('search', [ProductController::class, 'search'])->name('search');
 
-Route::get('bai-viet/{alias?}', [ProductController::class, 'news']);
-Route::get('danh-muc/{alias?}', [ProductController::class, 'category']);
-Route::get('san-pham/{alias?}', [ProductController::class, 'product']);
+Route::get('danh-muc/{alias?}', [ProductController::class, 'category'])->name('danh-muc');
+Route::get('san-pham/{alias?}', [ProductController::class, 'product'])->name('san-pham');
 
 // Trang dành cho Admin
 Route::prefix('admin')->middleware(['auth','admin'])->name('admin.')->group(function () {

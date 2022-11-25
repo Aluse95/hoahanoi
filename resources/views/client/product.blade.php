@@ -6,12 +6,12 @@
 
 @section('nav')
 <div class="container">
-  <ul class="nav-list d-flex justify-content-center list-unstyled text-uppercase m-0"> 
-    <li class="nav-item"><a href="{{ route('home') }}" class="nav-item_link active">Trang chủ</a></li>
-    @foreach ($cats as $item)
-      <li class="nav-item"><a href="../danh-muc/{{$item->cat_alias}}" class="nav-item_link">{{ $item->name }}</a></li>
-    @endforeach
-  </ul>
+    <ul class="nav-list d-flex justify-content-center list-unstyled text-uppercase m-0"> 
+        <li class="nav-item"><a href="{{ route('home') }}" class="nav-item_link active">Trang chủ</a></li>
+        @foreach ($cats as $item)
+            <li class="nav-item position-relative nav-border"><a href="../danh-muc/{{$item->cat_alias}}" class="nav-item_link">{{ $item->name }}</a></li>
+        @endforeach
+    </ul>
 </div>
 @endsection
 
@@ -42,7 +42,7 @@
                                 <div class="link-path ml-3">
                                     <a href="{{ route('home') }}">Trang chủ</a><span class="ml-1">></span>
                                     <a href="../danh-muc/{{$cat->cat_alias}}">{{$cat->name}}</a><span class="ml-1">></span>
-                                    <a href="">{{$product->name}}</a>
+                                    <a href="san-pham/{{$product->name}}">{{$product->name}}</a>
                                 </div>
                             </div>
                             <h1 class="text-dark">{{$product->name}}</h1>
@@ -62,7 +62,7 @@
                                 <li class="data-service">Giao hàng nhanh nhất trong nội thành Hà Nội</li>
                                 <li class="data-service">Hoàn tiền 100% nếu bạn không hài lòng</li>
                             </ul>                           
-                            <form action="../cart/add" method="POST" class="d-flex align-items-center pt-4 pb-2">
+                            <form action="{{route('cart.add')}}" method="POST" class="d-flex align-items-center pt-4 pb-2">
                                 @csrf                           
                                 <div class="d-flex align-items-center">
                                     <button class="sub" type="button">-</button>

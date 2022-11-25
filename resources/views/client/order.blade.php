@@ -9,7 +9,9 @@
   <ul class="nav-list d-flex justify-content-center list-unstyled text-uppercase m-0"> 
     <li class="nav-item"><a href="{{ route('home') }}" class="nav-item_link active">Trang chủ</a></li>
     @foreach ($cats as $item)
-      <li class="nav-item"><a href="danh-muc/{{$item->cat_alias}}" class="nav-item_link">{{ $item->name }}</a></li>
+        <li class="nav-item position-relative nav-border">
+            <a href="danh-muc/{{$item->cat_alias}}" class="nav-item_link">{{ $item->name }}</a>
+        </li>
     @endforeach
   </ul>
 </div>

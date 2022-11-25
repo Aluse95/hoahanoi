@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Models\Reply;
 use App\Models\Comment;
-use App\Models\ReplyComment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -35,14 +35,14 @@ class CommentController extends Controller
             'content' => 'required'
         ]);
 
-        $reply = new ReplyComment;
+        $reply = new Reply;
         $reply->user_id = Auth::user()->id;
         $reply->content = $request->input('content');
         $reply->comment_id = $request->input('comment_id');
         $reply->save();
 
-        $id = ReplyComment::max('id');
-        $data = ReplyComment::where('id', $id)->first();
+        $id = Reply::max('id');
+        $data = Reply::where('id', $id)->first();
 
         return $data;
     }

@@ -25,10 +25,10 @@
             </div>
             <div class="col-lg-6 pr-0">
               <ul class="d-flex list-unstyled justify-content-end align-items-center m-0 h-100">
-                <li><a href="{{ route('intro') }}" class="text-white header-top_item px-3 border-0">Giới thiệu</a></li>
-                <li><a href="{{ route('contact') }}" class="text-white header-top_item px-3">Liên hệ</a></li>
-                <li><a href="{{ route('news') }}" class="text-white header-top_item px-3">Tin tức</a></li>
-                <li><a href="{{ route('cart') }}" class="text-white header-top_item px-3">Giỏ hàng</a></li>
+                <li><a href="{{ route('intro') }}" class="header-top_item px-3">Giới thiệu</a></li>
+                <li class="item-border"><a href="{{ route('contact') }}" class="header-top_item px-3">Liên hệ</a></li>
+                <li class="item-border"><a href="{{ route('news') }}" class="header-top_item px-3">Tin tức</a></li>
+                <li class="item-border"><a href="{{ route('cart') }}" class="header-top_item px-3">Giỏ hàng</a></li>
                 <div class="social-icon">
                   <a href="https://www.facebook.com/hanoiflorist.238"><i class="social-icon_head text-white ml-2 fa-brands fa-facebook-f"></i></a>
                   <a href="https://www.instagram.com/ciel.flower.shop"><i class="social-icon_head text-white ml-2 fa-brands fa-instagram insta"></i></a>
