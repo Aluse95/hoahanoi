@@ -20,7 +20,7 @@
 @section('nav-mobile')
 <ul class="nav-mobile_list p-0 ml-3 list-unstyled">
   <li class="nav-mobile_item"><a href="{{ route('home') }}">Trang chủ</a></li>
-  @foreach ($cats as $item)
+  @foreach ($all_cats as $item)
         <li class="nav-mobile_item"><a href="{{route('danh-muc',['alias'=>$item->cat_alias])}}">{{ $item->name }}</a></li>
     @endforeach
 </ul>

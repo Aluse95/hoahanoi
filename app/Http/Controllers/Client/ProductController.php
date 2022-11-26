@@ -13,9 +13,11 @@ class ProductController extends Controller
 {
     public function home() {
 
-        $cats = Cat::whereNot('id',3)->orderBy('id','asc')->take(4)->get();
+        $all_cats = Cat::whereNot('id',3)->orderBy('id','asc')->take(4)->get();
 
-        foreach($cats as $cat) {
+        $total = [];
+
+        foreach($all_cats as $cat) {
 
             $total[$cat->name] = Product::where('cat_id',$cat->id)->take(8)->get();
         }
@@ -28,7 +30,7 @@ class ProductController extends Controller
 
         $news = News::take(4)->get();
 
-        return view('client.home', compact('cats','total','hoa_tuan_nay','hoa_chia_buon','news'));
+        return view('client.home', compact('all_cats','total','hoa_tuan_nay','hoa_chia_buon','news'));
     }
 
     public function product($alias = null) {
