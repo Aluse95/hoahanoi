@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Client;
 use App\Models\Cat;
 use App\Models\News;
 use App\Models\Product;
-use App\Models\Comment;
-use App\Models\ReplyComment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
     public function home() {
+
+        $cats = Cat::where('status',1)->take(4)->get();
 
         $all_cats = Cat::whereNot('id',3)->orderBy('id','asc')->take(4)->get();
 
@@ -30,10 +30,12 @@ class ProductController extends Controller
 
         $news = News::take(4)->get();
 
-        return view('client.home', compact('all_cats','total','hoa_tuan_nay','hoa_chia_buon','news'));
+        return view('client.home', compact('cats','all_cats','total','hoa_tuan_nay','hoa_chia_buon','news'));
     }
 
     public function product($alias = null) {
+
+        $cats = Cat::where('status',1)->take(4)->get();
 
         $product = Product::where('product_alias', $alias)->first();
 
@@ -52,7 +54,7 @@ class ProductController extends Controller
     
             $news = News::take(4)->get();
     
-            return view('client.product', compact('cat','product','desc','product_like','news','all_cat'));
+            return view('client.product', compact('cat','cats','product','desc','product_like','news','all_cat'));
         }
 
         return view('client.error');
@@ -62,6 +64,8 @@ class ProductController extends Controller
 
         $all_cat = Cat::all();
 
+        $cats = Cat::where('status',1)->take(4)->get();
+
         $cat = Cat::where('cat_alias', $alias)->first();
 
         if($cat) {
@@ -70,7 +74,7 @@ class ProductController extends Controller
 
             session()->flash('active', $alias);
     
-            return view('client.cat', compact('cat','all_product','all_cat'));
+            return view('client.cat', compact('cat','cats','all_product','all_cat'));
         }
 
         return view('client.error');

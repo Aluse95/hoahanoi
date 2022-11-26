@@ -42,6 +42,7 @@
           <li class="nav-item"><a href="{{ route('admin.product') }}">Sản phẩm</a></li>
           <li class="nav-item"><a href="{{ route('admin.cat') }}">Danh mục</a></li>
           <li class="nav-item"><a href="{{ route('admin.order') }}">Đơn hàng</a></li>
+          <li class="nav-item"><a href="{{ route('admin.discount') }}">Mã giảm giá</a></li>
           <li class="nav-item"><a href="{{ route('admin.news') }}">Bài viết</a></li>
           <li class="nav-item"><a href="{{ route('admin.user') }}">Người dùng</a></li>
         </ul>
@@ -52,6 +53,7 @@
             <li class="dashboard-item"><a class="dashboard-link d-block" href="{{route('admin.product')}}"><i class="fa-solid fa-tag mr-3"></i>Sản phẩm</a></li>
             <li class="dashboard-item"><a class="dashboard-link d-block" href="{{route('admin.cat')}}"><i class="fa-sharp fa-solid fa-list-ul mr-3"></i>Danh mục</a></li>
             <li class="dashboard-item"><a class="dashboard-link d-block" href="{{route('admin.order')}}"><i class="fa-solid fa-clipboard-check mr-3"></i>Đơn hàng</a></li>
+            <li class="dashboard-item"><a class="dashboard-link d-block" href="{{route('admin.discount')}}"><i class="fa-solid fa-tag mr-3"></i>Mã giảm giá</a></li>
             <li class="dashboard-item"><a class="dashboard-link d-block" href="{{route('admin.news')}}"><i class="fa-regular fa-newspaper mr-3"></i>Bài viết</a></li>
             <li class="dashboard-item"><a class="dashboard-link d-block" href="{{route('admin.user')}}"><i class="fa-solid fa-user-group mr-3"></i>Người dùng</a></li>
           </ul>

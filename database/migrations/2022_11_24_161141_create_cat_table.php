@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('cat', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('cat_alias')->unique();
+            $table->string('cat_alias');
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
