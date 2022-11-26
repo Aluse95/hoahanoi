@@ -1,7 +1,7 @@
 @extends('client.layouts.app')
 
 @section('title')
-    Đơn hàng
+    Giỏ hàng
 @endsection
 
 @section('nav')

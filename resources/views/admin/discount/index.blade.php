@@ -9,7 +9,7 @@
         @csrf
         <div class="content h-100 p-5">
             <h2 class="text-center mt-2">Danh sách mã giảm giá</h2>
-            <a href="{{ route('admin.discount.add') }}" class="btn btn-control btn-primary mb-4 mr-2">Add Category</a>
+            <a href="{{ route('admin.discount.add') }}" class="btn btn-control btn-primary mb-4 mr-2">Add Discount</a>
             <button type="submit" class="btn-control btn btn-danger mb-4">Delete Option</button>
             <table class="table table-bordered mb-5">
                 <thead>
