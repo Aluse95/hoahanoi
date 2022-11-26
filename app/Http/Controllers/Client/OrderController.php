@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers\Client;
 
+use App\Models\Cat;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Discount;
@@ -12,12 +13,12 @@ class OrderController extends Controller {
 
 	public function index()
 	{
+		$cats = Cat::where('status',1)->take(4)->get();
+
 		$total = 0;
 		$data = Auth::user()->product;
 
-		return view('client.order')
-		->with('data', $data)
-		->with('total', $total);
+		return view('client.order', compact('cats','data','total'));
 	}
 
 	public function add(Request $request)
@@ -107,14 +108,13 @@ class OrderController extends Controller {
 		return redirect('cart');
 	}
 
-	public function detail() {
+	public function payment() {
 
+		$cats = Cat::where('status',1)->take(4)->get();
 		$total = 0;
 		$data = Auth::user()->product;
 
-		return view('client.payment')
-		->with('data', $data)
-		->with('total', $total);
+		return view('client.payment',compact('data','total','cats'));
 	}
 
 	public function order(Request $request) {

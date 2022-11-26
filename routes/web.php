@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\NewsAdController;
 use App\Http\Controllers\Admin\UserAdController;
 use App\Http\Controllers\Admin\OrdersController;
+use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\ProductsController;
 
 Route::get('/', [ProductController::class, 'home'])->name('home');
@@ -23,7 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::post('cart/update',[OrderController::class, 'update'])->name('cart.update');
     Route::get('cart/del/{id}',[OrderController::class, 'delete']);
     
-    Route::get('payment',[OrderController::class, 'detail'])->name('payment');
+    Route::get('payment',[OrderController::class, 'payment'])->name('payment');
     Route::post('payment',[OrderController::class, 'order']);
     Route::get('discount',[OrderController::class, 'discount']);
 });
@@ -92,6 +93,14 @@ Route::prefix('admin')->middleware(['auth','admin'])->name('admin.')->group(func
     Route::post('user/edit/{id}', [UserAdController::class, 'postEdit']);
     Route::get('user/del/{id}', [UserAdController::class, 'del'])->name('user.del');
     Route::post('user/del', [UserAdController::class, 'multiDel']);
+
+    Route::get('discount', [DiscountController::class, 'index'])->name('discount');
+    Route::get('discount/add', [DiscountController::class, 'getAdd'])->name('discount.add');
+    Route::post('discount/add', [DiscountController::class, 'postAdd']);
+    Route::get('discount/edit/{id}', [DiscountController::class, 'getEdit'])->name('discount.edit');
+    Route::post('discount/edit/{id}', [DiscountController::class, 'postEdit']);
+    Route::get('discount/del/{id}', [DiscountController::class, 'del'])->name('discount.del');
+    Route::post('discount/del', [DiscountController::class, 'multiDel']);
 });
 
 

@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title')
-    Thêm danh mục
+    Thêm mã giảm giá
 @endsection
 
 @section('content')
@@ -14,12 +14,19 @@
           {{ session('message') }}
         </div>
       @endif
-      <h2 class="text-center">Thêm danh mục</h2>
+      <h2 class="text-center">Thêm mã giảm giá</h2>
       <div class="form-group my-3">
-        <label for="">Tên danh mục</label>
-        <input type="text" name="name" id="" class="input-item form-control mt-2" placeholder="Nhập tên danh mục" aria-describedby="helpId">
+        <label for="">Tên mã giảm giá</label>
+        <input type="text" name="name" id="" class="input-item form-control mt-2" placeholder="Nhập tên mã giảm giá" aria-describedby="helpId">
       </div>
       @error('name')
+        <p class="red">{{ $message }}</p>
+      @enderror
+      <div class="form-group my-3">
+        <label for="">Mức giảm giá</label>
+        <input type="number" name="sale_off" min="0" max="100" class="input-item form-control mt-2" placeholder="Nhập mức giảm giá (%)" aria-describedby="helpId">
+      </div>
+      @error('sale_off')
         <p class="red">{{ $message }}</p>
       @enderror
       <button type="submit" class="btn btn-success btn-control mt-3">Lưu</button>

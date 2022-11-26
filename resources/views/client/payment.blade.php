@@ -91,13 +91,13 @@
                             <p class="pink-color" id="sale-price">{{ number_format($total) }} đ</p>
                             <input type="hidden" id="total" name="price" value="{{ number_format($total) }} đ">
                         </div>
-                        <div class="pay-bank">
+                        {{-- <div class="pay-bank">
                             <input type="radio" id="bank" checked name="payment" value="bank">
                             <label for="bank">Chuyển khoản ngân hàng</label><br>
                             <p id="pay-rule">Thực hiện thanh toán vào ngay tài khoản ngân hàng của chúng tôi. Vui lòng sử dụng Mã đơn hàng của bạn trong phần Nội dung thanh toán. Đơn hàng sẽ đươc giao sau khi tiền đã chuyển.</p>
-                        </div>
+                        </div> --}}
                         <div class="my-3 pay-cash">
-                            <input type="radio" id="cash" name="payment" value="cash">
+                            <input type="radio" id="cash" checked name="payment" value="cash">
                             <label for="cash">Trả tiền mặt khi nhận hàng</label><br>
                         </div>
                         <input type="checkbox" id="rule" name="rule" value="rule">

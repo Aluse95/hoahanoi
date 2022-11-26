@@ -28,13 +28,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $cats = Cat::where('status',1)->take(4)->get();
-
-        if($cats->count() > 0) {
-
-            View::share('cats', $cats);
-        }
-
         Blade::component('alert', Alert::class);
 
         Paginator::useBootstrapFour();
