@@ -30,7 +30,10 @@ class AppServiceProvider extends ServiceProvider
     {
         $cats = Cat::where('status',1)->take(4)->get();
 
-        View::share('cats', $cats);
+        if($cats->count() > 0) {
+
+            View::share('cats', $cats);
+        }
 
         Blade::component('alert', Alert::class);
 
