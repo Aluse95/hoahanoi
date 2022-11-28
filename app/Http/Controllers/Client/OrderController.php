@@ -24,7 +24,7 @@ class OrderController extends Controller {
 	public function add(Request $request)
 	{
 		$validate = $request->validate([
-			'quantity' => 'required|integer',
+			'quantity' => 'required',
 		]);
 		
 		$data = Auth::user()->product;
