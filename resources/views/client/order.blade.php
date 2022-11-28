@@ -58,7 +58,7 @@
                                 <div class="d-flex align-items-center justify-content-center mt-2">
                                     <button class="sub" type="button">-</button>
                                     <input type="hidden" name="product_{{$item->id}}" value="{{ $item->id }}">
-                                    <input class="number text-center" type="text" name="flower[{{ $item->id }}]" value="{{ $item->pivot->quantity }}">
+                                    <input class="number text-center" type="number" inputmode="numeric" name="flower[{{ $item->id }}]" value="{{ $item->pivot->quantity }}">
                                     <button class="add" type="button">+</button>
                                 </div>
                             </td>

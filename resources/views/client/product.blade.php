@@ -66,7 +66,7 @@
                                 @csrf                           
                                 <div class="d-flex align-items-center">
                                     <button class="sub" type="button">-</button>
-                                    <input class="number text-center" type="text" value="1" name="quantity">
+                                    <input class="number text-center" type="number" inputmode="numeric" min="1" value="1" name="quantity">
                                     <input type="hidden" name="product_id" value="{{$product->id}}">
                                     <button class="add" type="button">+</button>
                                 </div>
